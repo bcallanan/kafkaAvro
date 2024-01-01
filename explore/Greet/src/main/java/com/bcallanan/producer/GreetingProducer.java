@@ -53,6 +53,8 @@ public class GreetingProducer {
         // block call add the get
         var metaData = kafkaProducer.send(producerRecord).get();
         
+        kafkaProducer.close();
+        
         log.info( "avro record topic: {}, partition: {} ", metaData.topic(), metaData.partition(), metaData.toString());
     }
 
