@@ -36,12 +36,11 @@ public class GreetingProducer {
         
         props.put( ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.99.108:39092");
         props.put( ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
-                StringSerializer.class.toString());
+                StringSerializer.class.getName());
         props.put( ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-                ByteArraySerializer.class.toString());
+                ByteArraySerializer.class.getName());
         
-        KafkaProducer< String, byte[]> kafkaProducer =
-                new KafkaProducer<>( props );
+        KafkaProducer< String, byte[]> kafkaProducer = new KafkaProducer<>( props );
         
         Greeting greeting = buildGreeting( "Hello, Schema Registry");
         byte[] byteArrayValue = greeting.toByteBuffer().array();
@@ -54,7 +53,7 @@ public class GreetingProducer {
         // block call add the get
         var metaData = kafkaProducer.send(producerRecord).get();
         
-        log.info( "avro record: {}", metaData);
+        log.info( "avro record topic: {}, partition: {} ", metaData.topic(), metaData.partition(), metaData.toString());
     }
 
     private static Greeting buildGreeting( String greetingString) {
