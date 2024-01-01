@@ -44,12 +44,14 @@
                         <configuration>
                             <sourceDirectory>${project.basedir}/src/main/avro/</sourceDirectory>
                             <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
-     <!--                       <imports>
+                                <!-- Imports this section is specific to maven when there are custom types
+                                    Within the avro schema files --> 
+                            <imports>
                                 <import>${project.basedir}/src/main/avro/Address.avsc</import>
-                                <import>${project.basedir}/src/main/avro/OrderId.avsc</import>
-                                <import>${project.basedir}/src/main/avro/OrderLineItem.avsc</import>
+                                <!--<import>${project.basedir}/src/main/avro/Order.avsc</import> -->
                                 <import>${project.basedir}/src/main/avro/Store.avsc</import>
-                            </imports> -->
+                                <import>${project.basedir}/src/main/avro/OrderItem.avsc</import>
+                            </imports> 
                             <enableDecimalLogicalType>true</enableDecimalLogicalType>
                             <customConversions>org.apache.avro.Conversions$UUIDConversion</customConversions>
                         </configuration>

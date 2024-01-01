@@ -1,0 +1,49 @@
+{
+    "name" : "Order",
+    "namespace": "com.bcallanan.domain.generated",
+    "type":  "record",
+    "fields" : [
+        {
+            "name": "id",
+            "type": "int"
+        },
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "nickname",
+            "type": "string",
+            "default":"",
+            "doc": "Optional nick name field"
+        },
+        {
+            "name": "store",
+            "type": "store"
+        },
+        {
+            "name": "OrderItems",
+            "type": {
+                "type": "array",
+                "items": {
+                    "name": "OrderItem",
+                    "type": "OrderItem"
+                }
+            }
+        },
+        {
+            "name": "status",
+            "type": {
+                "type": "enum",
+                "name": "Status",
+                "symbols": [
+                    "NEW",
+                    "CLOSED",
+                    "UPDATED",
+                    "DELETED",
+                    "COMPLETED"
+                ]
+            }
+        }
+    ]
+}

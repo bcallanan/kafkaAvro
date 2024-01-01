@@ -1,0 +1,28 @@
+{
+    "name" : "OrderItem",
+    "namespace": "com.bcallanan.domain.generated",
+    "type":  "record",
+    "fields" : [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "size",
+            "type": {
+                "type": "enum",
+                "name": "Size",
+                "symbols": [
+                    "SM",
+                    "MED",
+                    "LG",
+                    "XLG"
+                ]
+             }
+        },
+        {
+            "name": "quantity",
+            "type": "int"
+        }
+    ]
+}

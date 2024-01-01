@@ -1,0 +1,23 @@
+{
+  "id": 1,
+  "name": "Brian Callanan",
+  "nickName": "",
+  "store": {
+    "id": 205,
+    "address": {
+      "addressLine1": "18 Eyler Drive",
+      "city": "Portsmouth",
+      "state_province": "RI",
+      "country": "USA",
+      "zip": "02871"
+    }
+  },
+  "orderLineItems": [{
+      "name": "Caffe Latte",
+      "size": "MEDIUM",
+      "quantity": 1
+    }
+  ],
+  "ordered_time": "2022-06-16T18:40:55.472",
+  "status": "NEW"
+}
