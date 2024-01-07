@@ -1,0 +1,33 @@
+{
+    "name" : "Address",
+    "namespace": "com.bcallanan.domain.generated",
+    "type":  "record",
+    "fields" : [
+        {
+            "name": "addressLine1",
+            "type": "string"
+        },
+        {
+            "name": "addressLine2",
+            "type": "string",
+            "default":"",
+            "doc": "Optional send address line"
+        },
+        {
+            "name": "city",
+            "type": "string"
+        },
+        {
+            "name": "state",
+            "type": "string"
+        },
+        {
+            "name": "country",
+            "type": "string"
+        },
+        {
+            "name": "zip",
+            "type": "string"
+        }
+    ]
+}

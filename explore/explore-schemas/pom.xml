@@ -1,9 +1,63 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <artifactId>explore-schemas</artifactId>
+  <packaging>jar</packaging>
+  <name>Avro Schema explore domain classes</name>
+
   <parent>
     <groupId>com.bcallanan</groupId>
     <artifactId>avro</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>explore-schemas</artifactId>
+ 
+   <properties>
+     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     <java.version>17</java.version>
+   </properties>
+
+   <dependencies>
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>1.11.3</version>
+        </dependency>
+   </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.avro</groupId>
+                <artifactId>avro-maven-plugin</artifactId>
+                <version>1.9.2</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>schema</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectory>${project.basedir}/src/main/avro/</sourceDirectory>
+                            <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+                                <!-- Imports this section is specific to maven when there are custom types
+                                    Within the avro schema files --> 
+                            <imports>
+                                <import>${project.basedir}/src/main/avro/Address.avsc</import>
+                                <import>${project.basedir}/src/main/avro/OrderId.avsc</import>
+                                <import>${project.basedir}/src/main/avro/Store.avsc</import>
+                                <import>${project.basedir}/src/main/avro/OrderItem.avsc</import>
+                            </imports> 
+                            <enableDecimalLogicalType>true</enableDecimalLogicalType>
+                            <customConversions>org.apache.avro.Conversions$UUIDConversion</customConversions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+         </plugins>
+      </build>
 </project>

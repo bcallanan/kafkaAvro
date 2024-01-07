@@ -14,6 +14,8 @@
         <module>greet-producer</module>
         <module>greet-consumer</module>
         <module>explore-schemas</module>
+        <module>avro-consumer</module>
+        <module>avro-producer</module>
    </modules>
     <repositories>
         <repository>

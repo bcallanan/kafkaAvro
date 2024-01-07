@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bcallanan.consumer;
+package com.bcallanan.avro;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -16,7 +16,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
-import com.bcallanan.Greeting;
+import com.bcallanan.domain.generated.Order;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,9 +24,9 @@ import lombok.extern.slf4j.Slf4j;
  * 
  */
 @Slf4j
-public class GreetingConsumer {
+public class AvroConsumer {
 
-    private static final String GREETING_TOPIC = "greeting";
+    private static final String ORDER_TOPIC = "orders";
 
     /**
      * @param args
@@ -42,10 +42,10 @@ public class GreetingConsumer {
                 StringDeserializer.class.getName());
         props.put( ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
                 ByteArrayDeserializer.class.getName());
-        props.put( ConsumerConfig.GROUP_ID_CONFIG, "greeting.consumer");
+        props.put( ConsumerConfig.GROUP_ID_CONFIG, "order.consumer");
         
         KafkaConsumer< String, byte[]> kafkaConsumer = new KafkaConsumer<>( props );
-        kafkaConsumer.subscribe( Collections.singletonList( GREETING_TOPIC) );
+        kafkaConsumer.subscribe( Collections.singletonList( ORDER_TOPIC) );
 
         while( true ) {
             
@@ -53,30 +53,20 @@ public class GreetingConsumer {
             
             records.forEach( ( record) -> {
                 
-                Greeting greeting = null;
+                Order order = null;
                 try {
-                    greeting = decodeAvroGreeting( record.value() );
+                    order = decodeAvroOrder( record.value() );
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    log.error( "exception: {}", e.getMessage(), e);
                 }
-                
-                log.info( "Consumer message: {}", greeting);
+                System.out.println( "Order " + order);
+                log.info( "Consumer message: {}", order);
             });
         }
     }
 
-    private static Greeting decodeAvroGreeting(byte[] greetingEncodedTextArray ) throws IOException {
-        // TODO Auto-generated method stub
-        return Greeting.fromByteBuffer( ByteBuffer.wrap(greetingEncodedTextArray) );
+    private static Order decodeAvroOrder(byte[] orderEncodedTextArray ) throws IOException {
+        return Order.fromByteBuffer( ByteBuffer.wrap( orderEncodedTextArray) );
     }
-
-    private static Greeting buildGreeting( String greetingString) {
- 
-        // TODO Auto-generated method stub
-        return Greeting.newBuilder()
-                .setGreeting(greetingString)
-                .build();
-    }   
-
 }
