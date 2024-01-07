@@ -15,20 +15,22 @@ import java.util.concurrent.ExecutionException;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 import com.bcallanan.domain.generated.Order;
 
+import io.confluent.kafka.serializers.KafkaAvroDeserializer;
+import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
+import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * 
  */
 @Slf4j
-public class AvroConsumer {
+public class AvroSchemaRegistryConsumer {
 
-    private static final String ORDER_TOPIC = "orders";
+    private static final String ORDER_SCHEMA_TOPIC = "orders-sr";
 
     /**
      * @param args
@@ -43,29 +45,36 @@ public class AvroConsumer {
         props.put( ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
                 StringDeserializer.class.getName());
         props.put( ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
-                ByteArrayDeserializer.class.getName());
-        props.put( ConsumerConfig.GROUP_ID_CONFIG, "order.consumer");
+                KafkaAvroDeserializer.class.getName());
+        props.put( KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG,
+                "192.168.99.108:38081");
         
-        KafkaConsumer< String, byte[]> kafkaConsumer = new KafkaConsumer<>( props );
-        kafkaConsumer.subscribe( Collections.singletonList( ORDER_TOPIC) );
+        //Without this property the event record is treated as a "generic record" and
+        //won't deserialize against the schema 
+        props.put( KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
+        
+        props.put( ConsumerConfig.GROUP_ID_CONFIG, "order-sr.consumer");
+        
+        KafkaConsumer< String, Order> kafkaConsumer = new KafkaConsumer<>( props );
+        kafkaConsumer.subscribe( Collections.singletonList( ORDER_SCHEMA_TOPIC) );
 
         while( true ) {
             
-            ConsumerRecords<String, byte[]>  records = kafkaConsumer.poll( Duration.ofMillis( 100 ));
+            ConsumerRecords<String, Order>  records = kafkaConsumer.poll( Duration.ofMillis( 100 ));
             
             records.forEach( ( record) -> {
                 
-                Order order = null;
-                try {
-                    order = decodeAvroOrder( record.value() );
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    log.error( "exception: {}", e.getMessage(), e);
-                }
+                Order order = record.value();
+//                try {
+//                    order = decodeAvroOrder( record.value() );
+//                } catch (IOException e) {
+//                    // TODO Auto-generated catch block
+//                    log.error( "exception: {}", e.getMessage(), e);
+//                }
                 
                 String zone = ZoneId.SHORT_IDS.get( "EST");
                 LocalDateTime.ofInstant( order.getOrderedTime(), ZoneId.of( zone ));
-                System.out.println( "Order " + order);
+                System.out.println( "Order " + order.toString());
                 log.info( "Consumer message: {}", order);
             });
         }

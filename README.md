@@ -24,7 +24,7 @@ Event message serialization in Kafka is based on two options:
     
     Options: JSON, XML
     
-Over the next few pages of this readme document, we'll review how to develop a serialized AVRO Schema to serialize a payload as a Producer and de-serialize the same payload with the AVRO Schema as a Consumer. 
+Over the next few pages of this read-me document, we'll review how to develop a serialized AVRO Schema to serialize a payload as a Producer and de-serialize the same payload with the AVRO Schema as a Consumer. 
 
 We'll also show how to migrate the events from one registry version to the next.
 
@@ -74,7 +74,7 @@ The in the first window, enter the following:
     {"greeting": "Good Evening!, AVRO"}
     {"greeting": "Good Night!, AVRO"}
 
-If there are no exceptions, and the messages are printed in the avro consumer, you're good! Then you can enter the following bad message and you'll get the exception showing it failed the scehma:
+If there are no exceptions, and the messages are printed in the avro consumer, you're good! Then you can enter the following bad message and you'll get the exception showing it failed the schema:
 
     greetings
     [2023-12-31 14:44:33,372] INFO [Producer clientId=console-producer] Closing the Kafka producer with timeoutMillis = 9223372036854775807 ms. (org.apache.kafka.clients.producer.KafkaProducer)
@@ -91,6 +91,30 @@ If there are no exceptions, and the messages are printed in the avro consumer, y
     Caused by: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'greetings': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
     at [Source: (String)"greetings"; line: 1, column: 10]
         
-Once through this there will be a functioning AVRO Kafka docker Env to run the microservices.         
+Once through this there will be a functioning AVRO Kafka docker Env to run the micro-services.         
 
-    
+
+##### Avro Schema Reference
+
+The reference material for defining schema types can be found [here](http://avro.apache.org/docs/current/spec.html 'Avro Schema reference').
+ 
+
+Initial schema for the initial test case can be found [here](https://github.com/bcallanan/kafkaAvro/tree/main/explore/explore-schemas/src/main/avro). This example is w/o spring-boot and just pure 'org.apache.kafka' apis. This test case will test the schema as a published event record into Kafka and then can be decoded and consumed on the other side...
+
+##### Avro Data Exchanges Reference
+
+Avro Data that is encoded has no type definitions. So, the serializers perform schema validations. So, both the producers and consumers have the schema dependency.
+
+The schema registery holds the schema for validation see [here](https://www.confluent.io/blog/schemas-contracts-compatibility/?_ga=2.205203091.2005966880.1650190514-1685861233.1648224453&_gac=1.154929994.1648739558.CjwKCAjwopWSBhB6EiwAjxmqDdc7q5-nqdT-Zx3DI64gxdYDjq4-Ile0txJr4rgDFYY4HAytwrpGZRoCNgUQAvD_BwE)
+
+Here's an example diagram showing the integration of the schema registry.
+
+![Alt text](./SchemaRegistry.jpg?raw=true "Avro Schema Registry")
+
+##### Schema Registry
+
+The Avro Schema registry is just like every other RESTful platform and supports the following resource types:
+  1) Subjects: Fundamentally a scope in which the Schema's evolve. (eg Versioning)
+  1) Schemas: The resource that is used to represent a schema (get by id)
+  1) Config: The resource that is used to update the cluster-level config for the schema registry
+  1) Compatibility: The resource that is used to check the compatibility between schemas

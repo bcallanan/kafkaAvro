@@ -5,8 +5,12 @@
     "fields" : [
         {
             "name": "id",
-            "type": "OrderId"
-        },
+            "type": "OrderId"        },
+ //       {
+//            "name": "id",
+////            "type": "string",
+//            "logicalType": "uuid"
+//        },
         {
             "name": "name",
             "type": "string"
@@ -38,6 +42,13 @@
                 "logicalType": "timestamp-millis"
             }
         },
+//        {
+//            "name": "ordered_date",
+//            "type": {
+//                "type": "int",
+//                "logicalType": "date"
+//            }
+//        },
         {
             "name": "status",
             "type": {

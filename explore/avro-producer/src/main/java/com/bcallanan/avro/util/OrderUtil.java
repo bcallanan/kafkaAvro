@@ -2,8 +2,10 @@ package com.bcallanan.avro.util;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import com.bcallanan.domain.generated.Address;
 import com.bcallanan.domain.generated.Order;
@@ -22,13 +24,14 @@ public class OrderUtil {
 
         return Order.newBuilder()
                 .setId( orderId)
-                // .setId(UUID.randomUUID())
+                //.setId( UUID.randomUUID())
                 .setName("Brian Callanan")
                 //.setNickName("BBB")
                 // .setFullName("Brian Paul Callanan")
                 .setStore(generateStore())
                 .setOrderItems(generateOrderItems())
                 .setOrderedTime(Instant.now())
+                //.setOrderedDate(LocalDate.now())
                 //.setPickUp(PickUp.IN_STORE)
                 //.setPickUpType(PickUp.IN_STORE)
                 .setStatus( Status.NEW)
@@ -54,7 +57,7 @@ public class OrderUtil {
                 .setName("Caffe Latte")
                 .setQuantity(1)
                 .setSize(Size.MED)
-                .setCost(BigDecimal.valueOf(3.99))
+                .setCost( BigDecimal.valueOf( 3.99 ) )
                 .build();
 
         return List.of(orderItem);
