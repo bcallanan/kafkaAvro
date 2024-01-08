@@ -15,13 +15,12 @@ import java.util.concurrent.ExecutionException;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.serialization.StringDeserializer;
 
 import com.bcallanan.domain.generated.Order;
+import com.bcallanan.domain.generated.OrderId;
 
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
-import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -43,11 +42,11 @@ public class AvroSchemaRegistryConsumer {
         
         props.put( ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.99.108:39092");
         props.put( ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
-                StringDeserializer.class.getName());
+                KafkaAvroDeserializer.class.getName());
         props.put( ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
                 KafkaAvroDeserializer.class.getName());
         props.put( KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                "192.168.99.108:38081");
+                "http://192.168.99.108:38081");
         
         //Without this property the event record is treated as a "generic record" and
         //won't deserialize against the schema 
@@ -55,12 +54,12 @@ public class AvroSchemaRegistryConsumer {
         
         props.put( ConsumerConfig.GROUP_ID_CONFIG, "order-sr.consumer");
         
-        KafkaConsumer< String, Order> kafkaConsumer = new KafkaConsumer<>( props );
+        KafkaConsumer< OrderId, Order> kafkaConsumer = new KafkaConsumer<>( props );
         kafkaConsumer.subscribe( Collections.singletonList( ORDER_SCHEMA_TOPIC) );
 
         while( true ) {
             
-            ConsumerRecords<String, Order>  records = kafkaConsumer.poll( Duration.ofMillis( 100 ));
+            ConsumerRecords<OrderId, Order>  records = kafkaConsumer.poll( Duration.ofMillis( 100 ));
             
             records.forEach( ( record) -> {
                 

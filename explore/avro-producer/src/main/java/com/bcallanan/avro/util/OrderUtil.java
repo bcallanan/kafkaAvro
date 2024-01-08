@@ -31,7 +31,7 @@ public class OrderUtil {
                 .setStore(generateStore())
                 .setOrderItems(generateOrderItems())
                 .setOrderedTime(Instant.now())
-                //.setOrderedDate(LocalDate.now())
+                .setOrderedDate(LocalDate.now())
                 //.setPickUp(PickUp.IN_STORE)
                 //.setPickUpType(PickUp.IN_STORE)
                 .setStatus( Status.NEW)

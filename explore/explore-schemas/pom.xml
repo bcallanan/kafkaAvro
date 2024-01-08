@@ -3,6 +3,7 @@
   <artifactId>explore-schemas</artifactId>
   <packaging>jar</packaging>
   <name>Avro Schema explore domain classes</name>
+  <version>1.0</version>
 
   <parent>
     <groupId>com.bcallanan</groupId>

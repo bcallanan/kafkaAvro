@@ -14,12 +14,13 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class Order extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -3973418837474318609L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Order\",\"namespace\":\"com.bcallanan.domain.generated\",\"fields\":[{\"name\":\"id\",\"type\":{\"type\":\"record\",\"name\":\"OrderId\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"}]}},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"nickname\",\"type\":\"string\",\"doc\":\"Optional nick name field\",\"default\":\"\"},{\"name\":\"store\",\"type\":{\"type\":\"record\",\"name\":\"Store\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"address\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"addressLine1\",\"type\":\"string\"},{\"name\":\"addressLine2\",\"type\":\"string\",\"doc\":\"Optional send address line\",\"default\":\"\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"country\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}}]}},{\"name\":\"OrderItems\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderItem\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"size\",\"type\":{\"type\":\"enum\",\"name\":\"Size\",\"symbols\":[\"SM\",\"MED\",\"LG\",\"XLG\"]}},{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"cost\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":3,\"scale\":2}}]}}},{\"name\":\"ordered_time\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"status\",\"type\":{\"type\":\"enum\",\"name\":\"Status\",\"symbols\":[\"NEW\",\"CLOSED\",\"UPDATED\",\"DELETED\",\"COMPLETED\"]},\"default\":\"NEW\"}]}");
+  private static final long serialVersionUID = -7202382130870472237L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Order\",\"namespace\":\"com.bcallanan.domain.generated\",\"fields\":[{\"name\":\"id\",\"type\":{\"type\":\"record\",\"name\":\"OrderId\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"}]}},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"nickname\",\"type\":\"string\",\"doc\":\"Optional nick name field\",\"default\":\"\"},{\"name\":\"store\",\"type\":{\"type\":\"record\",\"name\":\"Store\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"address\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"addressLine1\",\"type\":\"string\"},{\"name\":\"addressLine2\",\"type\":\"string\",\"doc\":\"Optional send address line\",\"default\":\"\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"country\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}}]}},{\"name\":\"OrderItems\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderItem\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"size\",\"type\":{\"type\":\"enum\",\"name\":\"Size\",\"symbols\":[\"SM\",\"MED\",\"LG\",\"XLG\"]}},{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"cost\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":3,\"scale\":2}}]}}},{\"name\":\"ordered_time\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"ordered_date\",\"type\":{\"type\":\"int\",\"logicalType\":\"date\"}},{\"name\":\"status\",\"type\":{\"type\":\"enum\",\"name\":\"Status\",\"symbols\":[\"NEW\",\"CLOSED\",\"UPDATED\",\"DELETED\",\"COMPLETED\"]},\"default\":\"NEW\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
 static {
+    MODEL$.addLogicalTypeConversion(new org.apache.avro.data.TimeConversions.DateConversion());
     MODEL$.addLogicalTypeConversion(new org.apache.avro.data.TimeConversions.TimestampMillisConversion());
     MODEL$.addLogicalTypeConversion(new org.apache.avro.Conversions.DecimalConversion());
   }
@@ -82,6 +83,7 @@ static {
   @Deprecated public com.bcallanan.domain.generated.Store store;
   @Deprecated public java.util.List<com.bcallanan.domain.generated.OrderItem> OrderItems;
   @Deprecated public java.time.Instant ordered_time;
+  @Deprecated public java.time.LocalDate ordered_date;
   @Deprecated public com.bcallanan.domain.generated.Status status;
 
   /**
@@ -99,15 +101,17 @@ static {
    * @param store The new value for store
    * @param OrderItems The new value for OrderItems
    * @param ordered_time The new value for ordered_time
+   * @param ordered_date The new value for ordered_date
    * @param status The new value for status
    */
-  public Order(com.bcallanan.domain.generated.OrderId id, java.lang.CharSequence name, java.lang.CharSequence nickname, com.bcallanan.domain.generated.Store store, java.util.List<com.bcallanan.domain.generated.OrderItem> OrderItems, java.time.Instant ordered_time, com.bcallanan.domain.generated.Status status) {
+  public Order(com.bcallanan.domain.generated.OrderId id, java.lang.CharSequence name, java.lang.CharSequence nickname, com.bcallanan.domain.generated.Store store, java.util.List<com.bcallanan.domain.generated.OrderItem> OrderItems, java.time.Instant ordered_time, java.time.LocalDate ordered_date, com.bcallanan.domain.generated.Status status) {
     this.id = id;
     this.name = name;
     this.nickname = nickname;
     this.store = store;
     this.OrderItems = OrderItems;
     this.ordered_time = ordered_time.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
+    this.ordered_date = ordered_date;
     this.status = status;
   }
 
@@ -122,7 +126,8 @@ static {
     case 3: return store;
     case 4: return OrderItems;
     case 5: return ordered_time;
-    case 6: return status;
+    case 6: return ordered_date;
+    case 7: return status;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -135,6 +140,7 @@ static {
       null,
       null,
       new org.apache.avro.data.TimeConversions.TimestampMillisConversion(),
+      new org.apache.avro.data.TimeConversions.DateConversion(),
       null,
       null
   };
@@ -154,7 +160,8 @@ static {
     case 3: store = (com.bcallanan.domain.generated.Store)value$; break;
     case 4: OrderItems = (java.util.List<com.bcallanan.domain.generated.OrderItem>)value$; break;
     case 5: ordered_time = (java.time.Instant)value$; break;
-    case 6: status = (com.bcallanan.domain.generated.Status)value$; break;
+    case 6: ordered_date = (java.time.LocalDate)value$; break;
+    case 7: status = (com.bcallanan.domain.generated.Status)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -263,6 +270,23 @@ static {
   }
 
   /**
+   * Gets the value of the 'ordered_date' field.
+   * @return The value of the 'ordered_date' field.
+   */
+  public java.time.LocalDate getOrderedDate() {
+    return ordered_date;
+  }
+
+
+  /**
+   * Sets the value of the 'ordered_date' field.
+   * @param value the value to set.
+   */
+  public void setOrderedDate(java.time.LocalDate value) {
+    this.ordered_date = value;
+  }
+
+  /**
    * Gets the value of the 'status' field.
    * @return The value of the 'status' field.
    */
@@ -329,6 +353,7 @@ static {
     private com.bcallanan.domain.generated.Store.Builder storeBuilder;
     private java.util.List<com.bcallanan.domain.generated.OrderItem> OrderItems;
     private java.time.Instant ordered_time;
+    private java.time.LocalDate ordered_date;
     private com.bcallanan.domain.generated.Status status;
 
     /** Creates a new Builder */
@@ -372,9 +397,13 @@ static {
         this.ordered_time = data().deepCopy(fields()[5].schema(), other.ordered_time);
         fieldSetFlags()[5] = other.fieldSetFlags()[5];
       }
-      if (isValidValue(fields()[6], other.status)) {
-        this.status = data().deepCopy(fields()[6].schema(), other.status);
+      if (isValidValue(fields()[6], other.ordered_date)) {
+        this.ordered_date = data().deepCopy(fields()[6].schema(), other.ordered_date);
         fieldSetFlags()[6] = other.fieldSetFlags()[6];
+      }
+      if (isValidValue(fields()[7], other.status)) {
+        this.status = data().deepCopy(fields()[7].schema(), other.status);
+        fieldSetFlags()[7] = other.fieldSetFlags()[7];
       }
     }
 
@@ -410,9 +439,13 @@ static {
         this.ordered_time = data().deepCopy(fields()[5].schema(), other.ordered_time);
         fieldSetFlags()[5] = true;
       }
-      if (isValidValue(fields()[6], other.status)) {
-        this.status = data().deepCopy(fields()[6].schema(), other.status);
+      if (isValidValue(fields()[6], other.ordered_date)) {
+        this.ordered_date = data().deepCopy(fields()[6].schema(), other.ordered_date);
         fieldSetFlags()[6] = true;
+      }
+      if (isValidValue(fields()[7], other.status)) {
+        this.status = data().deepCopy(fields()[7].schema(), other.status);
+        fieldSetFlags()[7] = true;
       }
     }
 
@@ -730,6 +763,45 @@ static {
     }
 
     /**
+      * Gets the value of the 'ordered_date' field.
+      * @return The value.
+      */
+    public java.time.LocalDate getOrderedDate() {
+      return ordered_date;
+    }
+
+
+    /**
+      * Sets the value of the 'ordered_date' field.
+      * @param value The value of 'ordered_date'.
+      * @return This builder.
+      */
+    public com.bcallanan.domain.generated.Order.Builder setOrderedDate(java.time.LocalDate value) {
+      validate(fields()[6], value);
+      this.ordered_date = value;
+      fieldSetFlags()[6] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'ordered_date' field has been set.
+      * @return True if the 'ordered_date' field has been set, false otherwise.
+      */
+    public boolean hasOrderedDate() {
+      return fieldSetFlags()[6];
+    }
+
+
+    /**
+      * Clears the value of the 'ordered_date' field.
+      * @return This builder.
+      */
+    public com.bcallanan.domain.generated.Order.Builder clearOrderedDate() {
+      fieldSetFlags()[6] = false;
+      return this;
+    }
+
+    /**
       * Gets the value of the 'status' field.
       * @return The value.
       */
@@ -744,9 +816,9 @@ static {
       * @return This builder.
       */
     public com.bcallanan.domain.generated.Order.Builder setStatus(com.bcallanan.domain.generated.Status value) {
-      validate(fields()[6], value);
+      validate(fields()[7], value);
       this.status = value;
-      fieldSetFlags()[6] = true;
+      fieldSetFlags()[7] = true;
       return this;
     }
 
@@ -755,7 +827,7 @@ static {
       * @return True if the 'status' field has been set, false otherwise.
       */
     public boolean hasStatus() {
-      return fieldSetFlags()[6];
+      return fieldSetFlags()[7];
     }
 
 
@@ -765,7 +837,7 @@ static {
       */
     public com.bcallanan.domain.generated.Order.Builder clearStatus() {
       status = null;
-      fieldSetFlags()[6] = false;
+      fieldSetFlags()[7] = false;
       return this;
     }
 
@@ -798,7 +870,8 @@ static {
         }
         record.OrderItems = fieldSetFlags()[4] ? this.OrderItems : (java.util.List<com.bcallanan.domain.generated.OrderItem>) defaultValue(fields()[4]);
         record.ordered_time = fieldSetFlags()[5] ? this.ordered_time : (java.time.Instant) defaultValue(fields()[5]);
-        record.status = fieldSetFlags()[6] ? this.status : (com.bcallanan.domain.generated.Status) defaultValue(fields()[6]);
+        record.ordered_date = fieldSetFlags()[6] ? this.ordered_date : (java.time.LocalDate) defaultValue(fields()[6]);
+        record.status = fieldSetFlags()[7] ? this.status : (com.bcallanan.domain.generated.Status) defaultValue(fields()[7]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;

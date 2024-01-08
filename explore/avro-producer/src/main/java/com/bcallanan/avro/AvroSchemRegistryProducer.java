@@ -10,11 +10,10 @@ import java.util.concurrent.ExecutionException;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.ByteArraySerializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 
 import com.bcallanan.avro.util.OrderUtil;
 import com.bcallanan.domain.generated.Order;
+import com.bcallanan.domain.generated.OrderId;
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
@@ -39,21 +38,20 @@ public class AvroSchemRegistryProducer {
         
         props.put( ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.99.108:39092");
         props.put( ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
-                StringSerializer.class.getName());
+                KafkaAvroSerializer.class.getName());
         props.put( ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
                 KafkaAvroSerializer.class.getName());
         props.put( KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG,
                 "http://192.168.99.108:38081");
         
-        KafkaProducer< String, Order> kafkaProducer = new KafkaProducer<>( props );
+        KafkaProducer< OrderId, Order> kafkaProducer = new KafkaProducer<>( props );
         
         Order order = OrderUtil.buildNewOrder();
-        byte[] byteArrayValue = order.toByteBuffer().array();
         
         //A key/value pair to be sent to Kafka. This consists of a topic name to which
         // the record is being sent, an optional partition number, and an optional key and value. 
-        ProducerRecord< String, Order> producerRecord = 
-                new ProducerRecord<>( ORDER_SCHEMA_TOPIC, order );
+        ProducerRecord< OrderId, Order> producerRecord = 
+                new ProducerRecord<>( ORDER_SCHEMA_TOPIC, order.getId(), order );
         
         // block call add the get
         var metaData = kafkaProducer.send(producerRecord).get();
