@@ -1,0 +1,719 @@
+{
+	"info": {
+		"_postman_id": "31a8c905-faed-4f6c-929f-1fc23cd45e03",
+		"name": "schema-registry",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3070272"
+	},
+	"item": [
+		{
+			"name": "subjects",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.99.108:38081/subjects",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"subjects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "subjects-delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.99.108:38081/subjects/commands-avro-value",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"subjects",
+						"commands-avro-value"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "subjects-version",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.99.108:38081/subjects/orders-sr-value/versions",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"subjects",
+						"orders-sr-value",
+						"versions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "subjects-version-schema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.99.108:38081/subjects/orders-sr-value/versions/3/schema",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"subjects",
+						"orders-sr-value",
+						"versions",
+						"3",
+						"schema"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "schemas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.99.108:38081/schemas",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"schemas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "schemas-versions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.99.108:38081/schemas",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"schemas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "schemas-types",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.99.108:38081/schemas/types",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"schemas",
+						"types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "schemas-withId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.99.108:38081/schemas/ids/1",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"schemas",
+						"ids",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.99.108:38081/config",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"config"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config-subject-level",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.99.108:38081/config/orders-sr-value",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"config",
+						"orders-sr-value"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config-subject-level-backward",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"compatibility\": \"BACKWARD\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.99.108:38081/config/orders-sr-value",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"config",
+						"orders-sr-value"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config-subject-level-backward-transitive",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"compatibility\": \"BACKWARD_TRANSITIVE\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.99.108:38081/config/orders-sr-value",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"config",
+						"orders-sr-value"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config-subject-level-forward",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"compatibility\": \"FORWARD\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.99.108:38081/config/orders-sr-value",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"config",
+						"orders-sr-value"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config-subject-level-forward-transitive",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"compatibility\": \"FORWARD_TRANSITIVE\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.99.108:38081/config/orders-sr-value",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"config",
+						"orders-sr-value"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config-subject-level-full",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"compatibility\": \"FULL\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.99.108:38081/config/orders-sr-value",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"config",
+						"orders-sr-value"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config-subject-level-none",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"compatibility\": \"NONE\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.99.108:38081/config/orders-sr-value",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"108"
+					],
+					"port": "38081",
+					"path": [
+						"config",
+						"orders-sr-value"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

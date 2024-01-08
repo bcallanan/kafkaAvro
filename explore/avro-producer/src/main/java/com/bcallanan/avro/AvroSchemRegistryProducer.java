@@ -43,7 +43,7 @@ public class AvroSchemRegistryProducer {
         props.put( ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
                 KafkaAvroSerializer.class.getName());
         props.put( KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                "192.168.99.108:38081");
+                "http://192.168.99.108:38081");
         
         KafkaProducer< String, Order> kafkaProducer = new KafkaProducer<>( props );
         

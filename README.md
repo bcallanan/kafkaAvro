@@ -103,7 +103,7 @@ Initial schema for the initial test case can be found [here](https://github.com/
 
 ##### Avro Data Exchanges Reference
 
-Avro Data that is encoded has no type definitions. So, the serializers perform schema validations. So, both the producers and consumers have the schema dependency.
+Avro Data that is encoded has no type definitions. So, the serializers perform schema validations. So, both the producers and consumers have or need the schema dependency.
 
 The schema registery holds the schema for validation see [here](https://www.confluent.io/blog/schemas-contracts-compatibility/?_ga=2.205203091.2005966880.1650190514-1685861233.1648224453&_gac=1.154929994.1648739558.CjwKCAjwopWSBhB6EiwAjxmqDdc7q5-nqdT-Zx3DI64gxdYDjq4-Ile0txJr4rgDFYY4HAytwrpGZRoCNgUQAvD_BwE)
 
@@ -118,3 +118,131 @@ The Avro Schema registry is just like every other RESTful platform and supports 
   1) Schemas: The resource that is used to represent a schema (get by id)
   1) Config: The resource that is used to update the cluster-level config for the schema registry
   1) Compatibility: The resource that is used to check the compatibility between schemas
+  
+You can use the following postman collection for access, [here](./schema-registry.postman_collection.json). Substitute in the url IP/Port.
+
+Here's an example of the schema at this juncture:
+<details>
+   <summary>(click-me)</summary>
+
+    {"type": "record",
+    "name": "Order",
+    "namespace": "com.bcallanan.domain.generated",
+    "fields": [
+        {   "name": "id",
+            "type": {
+                "type": "record",
+                "name": "OrderId",
+                "fields": [{
+                        "name": "id",
+                        "type": "int"
+                    }
+                ]
+            }
+        },
+        {   "name": "name",
+            "type": "string"
+        },
+        {   "name": "nickname",
+            "type": "string",
+            "doc": "Optional nick name field",
+            "default": ""
+        },
+        {   "name": "store",
+            "type": {
+                "type": "record",
+                "name": "Store",
+                "fields": [{
+                        "name": "id",
+                        "type": "int"
+                    },
+                    {   "name": "address",
+                        "type": {
+                            "type": "record",
+                            "name": "Address",
+                            "fields": [{
+                                    "name": "addressLine1",
+                                    "type": "string"
+                                },
+                                {   "name": "addressLine2",
+                                    "type": "string",
+                                    "doc": "Optional send address line",
+                                    "default": ""
+                                },
+                                {   "name": "city",
+                                    "type": "string"
+                                },
+                                {   "name": "state",
+                                    "type": "string"
+                                },
+                                {   "name": "country",
+                                    "type": "string"
+                                },
+                                {   "name": "zip",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {   "name": "OrderItems",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "record",
+                    "name": "OrderItem",
+                    "fields": [{
+                            "name": "name",
+                            "type": "string"
+                        },
+                        {   "name": "size",
+                            "type": {
+                                "type": "enum",
+                                "name": "Size",
+                                "symbols": [
+                                    "SM",
+                                    "MED",
+                                    "LG",
+                                    "XLG"
+                                ]
+                            }
+                        },
+                        {   "name": "quantity",
+                            "type": "int"
+                        },
+                        {   "name": "cost",
+                            "type": {
+                                "type": "bytes",
+                                "logicalType": "decimal",
+                                "precision": 3,
+                                "scale": 2
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {   "name": "ordered_time",
+            "type": {
+                "type": "long",
+                "logicalType": "timestamp-millis"
+            }
+        },
+        {   "name": "status",
+            "type": {
+                "type": "enum",
+                "name": "Status",
+                "symbols": [
+                    "NEW",
+                    "CLOSED",
+                    "UPDATED",
+                    "DELETED",
+                    "COMPLETED"
+                ]
+            },
+            "default": "NEW"
+        }
+    ]}    
+</details>
