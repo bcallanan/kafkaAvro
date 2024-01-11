@@ -11,19 +11,19 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
-import com.bcallanan.avro.util.OrderUtil;
-import com.bcallanan.domain.generated.Order;
-import com.bcallanan.domain.generated.OrderId;
+import com.bcallanan.domain.generated.OrderStatus;
+import com.bcallanan.domain.generated.OrderUpdate;
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
+import io.confluent.kafka.serializers.subject.RecordNameStrategy;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * 
  */
 @Slf4j
-public class AvroSchemRegistryProducer {
+public class AvroSchemRegistryUpdateProducer {
 
     private static final String ORDER_SCHEMA_TOPIC = "orders-sr";
 
@@ -43,22 +43,31 @@ public class AvroSchemRegistryProducer {
                 KafkaAvroSerializer.class.getName());
         props.put( KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG,
                 "http://192.168.99.108:38081");
+        props.put(KafkaAvroSerializerConfig.VALUE_SUBJECT_NAME_STRATEGY,
+                RecordNameStrategy.class.getName());
         
-        KafkaProducer< String, Order> kafkaProducer = new KafkaProducer<>( props );
+        KafkaProducer< String, OrderUpdate> kafkaProducer = new KafkaProducer<>( props );
         
-        Order order = OrderUtil.buildNewOrder();
+        OrderUpdate order = buildOrderUpdateEvent();
         
         //A key/value pair to be sent to Kafka. This consists of a topic name to which
         // the record is being sent, an optional partition number, and an optional key and value. 
-        ProducerRecord< String, Order> producerRecord = 
-                new ProducerRecord< String, Order> ( ORDER_SCHEMA_TOPIC,
-                        (String) order.getId(), order );
+        ProducerRecord< String, OrderUpdate> producerRecord = 
+                new ProducerRecord<>( ORDER_SCHEMA_TOPIC, order.getId().toString(), order );
         
         // block call add the get
         var metaData = kafkaProducer.send(producerRecord).get();
         
         kafkaProducer.close();
-        System.out.println(metaData );
+        System.out.println("update avro record topic: " +  metaData.topic() + " : " + metaData.toString());
+        System.out.println("published the prodcuer record: " +  producerRecord );
         log.info( "avro record topic: {}, partition: {} ", metaData.topic(), metaData.partition(), metaData.toString());
+    }
+
+    private static OrderUpdate buildOrderUpdateEvent() {
+        return OrderUpdate.newBuilder()
+            .setId( "19f712f1-3bb8-45d7-8f7a-332ee66c8dbc" )
+            .setStatus( OrderStatus.PROCESSING)
+            .build();
     }
 }

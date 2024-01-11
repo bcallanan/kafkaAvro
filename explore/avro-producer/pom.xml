@@ -22,7 +22,7 @@
        <dependency>
            <groupId>com.bcallanan</groupId>
            <artifactId>explore-schemas</artifactId>
-           <version>1.0</version>
+           <version>5.0</version>
        </dependency>
        <dependency>
            <groupId>org.apache.avro</groupId>
@@ -51,7 +51,7 @@
             <plugin>
                 <groupId>org.apache.avro</groupId>
                 <artifactId>avro-maven-plugin</artifactId>
-                <version>1.11.3</version>
+                <version>1.9.1</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>

@@ -11,6 +11,7 @@ import com.bcallanan.domain.generated.Address;
 import com.bcallanan.domain.generated.Order;
 import com.bcallanan.domain.generated.OrderId;
 import com.bcallanan.domain.generated.OrderItem;
+import com.bcallanan.domain.generated.PickUp;
 import com.bcallanan.domain.generated.Size;
 import com.bcallanan.domain.generated.Status;
 import com.bcallanan.domain.generated.Store;
@@ -23,16 +24,17 @@ public class OrderUtil {
                 .build();
 
         return Order.newBuilder()
-                .setId( orderId)
-                //.setId( UUID.randomUUID())
-                .setName("Brian Callanan")
-                //.setNickName("BBB")
-                // .setFullName("Brian Paul Callanan")
+                //.setId( orderId)
+                .setId( UUID.randomUUID().toString())
+                //.setName("Brian Callanan")
+                .setNickname("BBB")
+                .setNickname1("BBB")
+                .setFullname("Brian Paul Callanan")
                 .setStore(generateStore())
                 .setOrderItems(generateOrderItems())
                 .setOrderedTime(Instant.now())
                 .setOrderedDate(LocalDate.now())
-                //.setPickUp(PickUp.IN_STORE)
+                .setPickUp(PickUp.IN_STORE)
                 //.setPickUpType(PickUp.IN_STORE)
                 .setStatus( Status.NEW)
                 .build();

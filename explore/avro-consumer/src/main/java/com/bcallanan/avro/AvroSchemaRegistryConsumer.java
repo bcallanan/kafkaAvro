@@ -12,12 +12,14 @@ import java.util.Collections;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
+import org.apache.avro.generic.GenericRecord;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 import com.bcallanan.domain.generated.Order;
 import com.bcallanan.domain.generated.OrderId;
+import com.bcallanan.domain.generated.OrderUpdate;
 
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
@@ -54,16 +56,18 @@ public class AvroSchemaRegistryConsumer {
         
         props.put( ConsumerConfig.GROUP_ID_CONFIG, "order-sr.consumer");
         
-        KafkaConsumer< OrderId, Order> kafkaConsumer = new KafkaConsumer<>( props );
+        //KafkaConsumer< OrderId, Order> kafkaConsumer = new KafkaConsumer<>( props );
+        KafkaConsumer< OrderId, GenericRecord> kafkaConsumer = new KafkaConsumer<>( props );
         kafkaConsumer.subscribe( Collections.singletonList( ORDER_SCHEMA_TOPIC) );
 
         while( true ) {
             
-            ConsumerRecords<OrderId, Order>  records = kafkaConsumer.poll( Duration.ofMillis( 100 ));
+            ConsumerRecords<OrderId, GenericRecord>  records = kafkaConsumer.poll( Duration.ofMillis( 100 ));
+            //ConsumerRecords<OrderId, Order>  records = kafkaConsumer.poll( Duration.ofMillis( 100 ));
             
             records.forEach( ( record) -> {
                 
-                Order order = record.value();
+                var order = record.value();
 //                try {
 //                    order = decodeAvroOrder( record.value() );
 //                } catch (IOException e) {
@@ -72,8 +76,15 @@ public class AvroSchemaRegistryConsumer {
 //                }
                 
                 String zone = ZoneId.SHORT_IDS.get( "EST");
-                LocalDateTime.ofInstant( order.getOrderedTime(), ZoneId.of( zone ));
-                System.out.println( "Order " + order.toString());
+                if ( order instanceof OrderUpdate) {
+                    System.out.println( "Order update " + order.toString());
+                   
+                }
+                else if ( order instanceof Order ) {
+                
+                    LocalDateTime.ofInstant( ((Order) order).getOrderedTime(), ZoneId.of( zone ));
+                    System.out.println( "Order " + order.toString());
+                }
                 log.info( "Consumer message: {}", order);
             });
         }

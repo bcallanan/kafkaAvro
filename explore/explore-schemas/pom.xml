@@ -3,7 +3,7 @@
   <artifactId>explore-schemas</artifactId>
   <packaging>jar</packaging>
   <name>Avro Schema explore domain classes</name>
-  <version>1.0</version>
+  <version>5.0</version>
 
   <parent>
     <groupId>com.bcallanan</groupId>
@@ -50,8 +50,10 @@
                             <imports>
                                 <import>${project.basedir}/src/main/avro/Address.avsc</import>
                                 <import>${project.basedir}/src/main/avro/OrderId.avsc</import>
+                                <import>${project.basedir}/src/main/avro/OrderUpdate.avsc</import>
                                 <import>${project.basedir}/src/main/avro/Store.avsc</import>
                                 <import>${project.basedir}/src/main/avro/OrderItem.avsc</import>
+                                <import>${project.basedir}/src/main/avro/Order.avsc</import>
                             </imports> 
                             <enableDecimalLogicalType>true</enableDecimalLogicalType>
                             <customConversions>org.apache.avro.Conversions$UUIDConversion</customConversions>
