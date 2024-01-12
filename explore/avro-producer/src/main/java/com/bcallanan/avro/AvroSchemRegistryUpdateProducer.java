@@ -16,7 +16,7 @@ import com.bcallanan.domain.generated.OrderUpdate;
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
-import io.confluent.kafka.serializers.subject.RecordNameStrategy;
+import io.confluent.kafka.serializers.subject.TopicRecordNameStrategy;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -44,7 +44,7 @@ public class AvroSchemRegistryUpdateProducer {
         props.put( KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG,
                 "http://192.168.99.108:38081");
         props.put(KafkaAvroSerializerConfig.VALUE_SUBJECT_NAME_STRATEGY,
-                RecordNameStrategy.class.getName());
+                TopicRecordNameStrategy.class.getName());
         
         KafkaProducer< String, OrderUpdate> kafkaProducer = new KafkaProducer<>( props );
         
@@ -60,7 +60,7 @@ public class AvroSchemRegistryUpdateProducer {
         
         kafkaProducer.close();
         System.out.println("update avro record topic: " +  metaData.topic() + " : " + metaData.toString());
-        System.out.println("published the prodcuer record: " +  producerRecord );
+        System.out.println("published the producer record: " +  producerRecord );
         log.info( "avro record topic: {}, partition: {} ", metaData.topic(), metaData.partition(), metaData.toString());
     }
 

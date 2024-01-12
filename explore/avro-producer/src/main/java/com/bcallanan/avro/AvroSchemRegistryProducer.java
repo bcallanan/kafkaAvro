@@ -13,10 +13,10 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 
 import com.bcallanan.avro.util.OrderUtil;
 import com.bcallanan.domain.generated.Order;
-import com.bcallanan.domain.generated.OrderId;
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
+import io.confluent.kafka.serializers.subject.TopicRecordNameStrategy;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -43,7 +43,9 @@ public class AvroSchemRegistryProducer {
                 KafkaAvroSerializer.class.getName());
         props.put( KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG,
                 "http://192.168.99.108:38081");
-        
+        props.put(KafkaAvroSerializerConfig.VALUE_SUBJECT_NAME_STRATEGY,
+                TopicRecordNameStrategy.class.getName());
+
         KafkaProducer< String, Order> kafkaProducer = new KafkaProducer<>( props );
         
         Order order = OrderUtil.buildNewOrder();

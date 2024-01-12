@@ -99,7 +99,7 @@ Once through this there will be a functioning AVRO Kafka docker Env to run the m
 The reference material for defining schema types can be found [here](http://avro.apache.org/docs/current/spec.html 'Avro Schema reference').
  
 
-Initial schema for the initial test case can be found [here](https://github.com/bcallanan/kafkaAvro/tree/main/explore/explore-schemas/src/main/avro). This example is w/o spring-boot and just pure 'org.apache.kafka' apis. This test case will test the schema as a published event record into Kafka and then can be decoded and consumed on the other side...
+Initial schema for the initial test case can be found [here](https://github.com/bcallanan/kafkaAvro/tree/main/explore/explore-schemas/src/main/avro). This example is pure 'org.apache.kafka' apis. This test case will test the schema as a published event record into Kafka and then can be decoded and consumed on the other side...
 
 #### Avro Data Exchanges Reference
 
@@ -305,8 +305,8 @@ Topic Subject naming is the schema registry default and is constructed as follow
   1) the schemas of all the event messages in the topic must be compatible with each other.
   1) subject name is derived as follows:
 
- - {topic-name}-key
- - {topic-name}-value
+    - {topic-name}-key
+    - {topic-name}-value
 
     props.put(KafkaAvroSerializerConfig.VALUE_SUBJECT_NAME_STRATEGY, SubjectNameStrategy.class.getName());
 
@@ -341,7 +341,7 @@ Topic Record Naming Strategy is very similar to the previous strategy of record 
   1) Again here, There are multiple types of related events are being published in the same topic and ordering of the events need to be maintained.
      - Schema registry checks the compatibility for a particular record type, only for the current topic.
      
- - {topic-name}-{FQRN: RecordName}
+        - Subject: {topic-name}-{FQRN: RecordName}
 
     props.put(KafkaAvroSerializerConfig.VALUE_SUBJECT_NAME_STRATEGY, TopicRecordNameStrategy.class.getName());
 
@@ -355,4 +355,18 @@ Topic Record Naming Strategy is very similar to the previous strategy of record 
      
 On Confluent's website there's a document that discusses these three naming options and how or when to use one option over another, [here](https://www.confluent.io/blog/put-several-event-types-kafka-topic/).
 
+    get http://192.168.99.108:38081/subjects
+    [
+    "com.bcallanan.domain.generated.Order",                    <- record strategy
+    "com.bcallanan.domain.generated.OrderUpdate",              <- record strategy
+    "orders-sr-com.bcallanan.domain.generated.Order",          <- topic-record strategy
+    "orders-sr-com.bcallanan.domain.generated.OrderUpdate",    <- topic-record strategy
+    "orders-sr-key",                                           <- topic subject naming
+    "orders-sr-value"                                          <- topic subject naming
+    ]
+    
 In both, Record Naming Strategy and Topic Record Naming Strategy the idea is to treat the incoming consumable object as a GenericRecord and cast to the specific type with an InstanceOf conditional. Then do the appropriate actions based on the type and the processing that would be needed for the object. This way you've got a single consumer service monitoring a single topic yet receiving multiple event types. 
+
+#### SpringBoot and Avro - Producer/Consumer
+
+These two microservices are implemented in Spring 3.2. There will be a Spring Avro kafka Producer and a Sping Avron Kafka Consumer. 

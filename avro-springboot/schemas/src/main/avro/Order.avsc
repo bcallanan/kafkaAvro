@@ -3,12 +3,20 @@
     "namespace": "com.bcallanan.domain.generated",
     "type":  "record",
     "fields" : [
-        {
+//        {
+//            "name": "id",
+//            "type": "OrderId"        },
+       {
             "name": "id",
-            "type": "int"
+            "type": "string",
+            "logicalType": "uuid"
         },
+//        {
+//            "name": "name",
+//            "type": "string"
+//        },
         {
-            "name": "name",
+            "name": "fullname",
             "type": "string"
         },
         {
@@ -18,8 +26,14 @@
             "doc": "Optional nick name field"
         },
         {
+            "name": "nickname1",
+            "type": "string",
+            "default":"",
+            "doc": "Optional nick name1 field"
+        },
+        {
             "name": "store",
-            "type": "store"
+            "type": "Store"
         },
         {
             "name": "OrderItems",
@@ -29,6 +43,32 @@
                     "name": "OrderItem",
                     "type": "OrderItem"
                 }
+            }
+        },
+        {
+            "name": "pick_up",
+            "type": {
+                "type": "enum",
+                "name": "PickUp",
+                "symbols": [
+                    "IN_STORE",
+                    "CURBSIDE"
+                ]
+            },
+            "default": "IN_STORE"
+        },
+        {
+            "name": "ordered_time",
+            "type": {
+                "type": "long",
+                "logicalType": "timestamp-millis"
+            }
+        },
+        {
+            "name": "ordered_date",
+            "type": {
+                "type": "int",
+                "logicalType": "date"
             }
         },
         {
@@ -43,7 +83,8 @@
                     "DELETED",
                     "COMPLETED"
                 ]
-            }
+            },
+            "default": "NEW"
         }
     ]
 }

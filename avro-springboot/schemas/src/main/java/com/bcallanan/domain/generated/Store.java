@@ -13,24 +13,24 @@ import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
-public class store extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -8623563901894885445L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"store\",\"namespace\":\"com.bcallanan.domain.generated\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"address\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"addressLine1\",\"type\":\"string\"},{\"name\":\"addressLine2\",\"type\":\"string\",\"doc\":\"Optional send address line\",\"default\":\"\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"country\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}}]}");
+public class Store extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+  private static final long serialVersionUID = 5459353780743130589L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Store\",\"namespace\":\"com.bcallanan.domain.generated\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"address\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"addressLine1\",\"type\":\"string\"},{\"name\":\"addressLine2\",\"type\":\"string\",\"doc\":\"Optional send address line\",\"default\":\"\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"country\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
 
-  private static final BinaryMessageEncoder<store> ENCODER =
-      new BinaryMessageEncoder<store>(MODEL$, SCHEMA$);
+  private static final BinaryMessageEncoder<Store> ENCODER =
+      new BinaryMessageEncoder<Store>(MODEL$, SCHEMA$);
 
-  private static final BinaryMessageDecoder<store> DECODER =
-      new BinaryMessageDecoder<store>(MODEL$, SCHEMA$);
+  private static final BinaryMessageDecoder<Store> DECODER =
+      new BinaryMessageDecoder<Store>(MODEL$, SCHEMA$);
 
   /**
    * Return the BinaryMessageEncoder instance used by this class.
    * @return the message encoder used by this class
    */
-  public static BinaryMessageEncoder<store> getEncoder() {
+  public static BinaryMessageEncoder<Store> getEncoder() {
     return ENCODER;
   }
 
@@ -38,7 +38,7 @@ public class store extends org.apache.avro.specific.SpecificRecordBase implement
    * Return the BinaryMessageDecoder instance used by this class.
    * @return the message decoder used by this class
    */
-  public static BinaryMessageDecoder<store> getDecoder() {
+  public static BinaryMessageDecoder<Store> getDecoder() {
     return DECODER;
   }
 
@@ -47,12 +47,12 @@ public class store extends org.apache.avro.specific.SpecificRecordBase implement
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
    * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
    */
-  public static BinaryMessageDecoder<store> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<store>(MODEL$, SCHEMA$, resolver);
+  public static BinaryMessageDecoder<Store> createDecoder(SchemaStore resolver) {
+    return new BinaryMessageDecoder<Store>(MODEL$, SCHEMA$, resolver);
   }
 
   /**
-   * Serializes this store to a ByteBuffer.
+   * Serializes this Store to a ByteBuffer.
    * @return a buffer holding the serialized data for this instance
    * @throws java.io.IOException if this instance could not be serialized
    */
@@ -61,12 +61,12 @@ public class store extends org.apache.avro.specific.SpecificRecordBase implement
   }
 
   /**
-   * Deserializes a store from a ByteBuffer.
+   * Deserializes a Store from a ByteBuffer.
    * @param b a byte buffer holding serialized data for an instance of this class
-   * @return a store instance decoded from the given buffer
+   * @return a Store instance decoded from the given buffer
    * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
    */
-  public static store fromByteBuffer(
+  public static Store fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
   }
@@ -79,14 +79,14 @@ public class store extends org.apache.avro.specific.SpecificRecordBase implement
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>.
    */
-  public store() {}
+  public Store() {}
 
   /**
    * All-args constructor.
    * @param id The new value for id
    * @param address The new value for address
    */
-  public store(java.lang.Integer id, com.bcallanan.domain.generated.Address address) {
+  public Store(java.lang.Integer id, com.bcallanan.domain.generated.Address address) {
     this.id = id;
     this.address = address;
   }
@@ -147,45 +147,45 @@ public class store extends org.apache.avro.specific.SpecificRecordBase implement
   }
 
   /**
-   * Creates a new store RecordBuilder.
-   * @return A new store RecordBuilder
+   * Creates a new Store RecordBuilder.
+   * @return A new Store RecordBuilder
    */
-  public static com.bcallanan.domain.generated.store.Builder newBuilder() {
-    return new com.bcallanan.domain.generated.store.Builder();
+  public static com.bcallanan.domain.generated.Store.Builder newBuilder() {
+    return new com.bcallanan.domain.generated.Store.Builder();
   }
 
   /**
-   * Creates a new store RecordBuilder by copying an existing Builder.
+   * Creates a new Store RecordBuilder by copying an existing Builder.
    * @param other The existing builder to copy.
-   * @return A new store RecordBuilder
+   * @return A new Store RecordBuilder
    */
-  public static com.bcallanan.domain.generated.store.Builder newBuilder(com.bcallanan.domain.generated.store.Builder other) {
+  public static com.bcallanan.domain.generated.Store.Builder newBuilder(com.bcallanan.domain.generated.Store.Builder other) {
     if (other == null) {
-      return new com.bcallanan.domain.generated.store.Builder();
+      return new com.bcallanan.domain.generated.Store.Builder();
     } else {
-      return new com.bcallanan.domain.generated.store.Builder(other);
+      return new com.bcallanan.domain.generated.Store.Builder(other);
     }
   }
 
   /**
-   * Creates a new store RecordBuilder by copying an existing store instance.
+   * Creates a new Store RecordBuilder by copying an existing Store instance.
    * @param other The existing instance to copy.
-   * @return A new store RecordBuilder
+   * @return A new Store RecordBuilder
    */
-  public static com.bcallanan.domain.generated.store.Builder newBuilder(com.bcallanan.domain.generated.store other) {
+  public static com.bcallanan.domain.generated.Store.Builder newBuilder(com.bcallanan.domain.generated.Store other) {
     if (other == null) {
-      return new com.bcallanan.domain.generated.store.Builder();
+      return new com.bcallanan.domain.generated.Store.Builder();
     } else {
-      return new com.bcallanan.domain.generated.store.Builder(other);
+      return new com.bcallanan.domain.generated.Store.Builder(other);
     }
   }
 
   /**
-   * RecordBuilder for store instances.
+   * RecordBuilder for Store instances.
    */
   @org.apache.avro.specific.AvroGenerated
-  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<store>
-    implements org.apache.avro.data.RecordBuilder<store> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<Store>
+    implements org.apache.avro.data.RecordBuilder<Store> {
 
     private int id;
     private com.bcallanan.domain.generated.Address address;
@@ -200,7 +200,7 @@ public class store extends org.apache.avro.specific.SpecificRecordBase implement
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(com.bcallanan.domain.generated.store.Builder other) {
+    private Builder(com.bcallanan.domain.generated.Store.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
@@ -216,10 +216,10 @@ public class store extends org.apache.avro.specific.SpecificRecordBase implement
     }
 
     /**
-     * Creates a Builder by copying an existing store instance
+     * Creates a Builder by copying an existing Store instance
      * @param other The existing instance to copy.
      */
-    private Builder(com.bcallanan.domain.generated.store other) {
+    private Builder(com.bcallanan.domain.generated.Store other) {
       super(SCHEMA$);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
@@ -246,7 +246,7 @@ public class store extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'id'.
       * @return This builder.
       */
-    public com.bcallanan.domain.generated.store.Builder setId(int value) {
+    public com.bcallanan.domain.generated.Store.Builder setId(int value) {
       validate(fields()[0], value);
       this.id = value;
       fieldSetFlags()[0] = true;
@@ -266,7 +266,7 @@ public class store extends org.apache.avro.specific.SpecificRecordBase implement
       * Clears the value of the 'id' field.
       * @return This builder.
       */
-    public com.bcallanan.domain.generated.store.Builder clearId() {
+    public com.bcallanan.domain.generated.Store.Builder clearId() {
       fieldSetFlags()[0] = false;
       return this;
     }
@@ -285,7 +285,7 @@ public class store extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'address'.
       * @return This builder.
       */
-    public com.bcallanan.domain.generated.store.Builder setAddress(com.bcallanan.domain.generated.Address value) {
+    public com.bcallanan.domain.generated.Store.Builder setAddress(com.bcallanan.domain.generated.Address value) {
       validate(fields()[1], value);
       this.addressBuilder = null;
       this.address = value;
@@ -321,7 +321,7 @@ public class store extends org.apache.avro.specific.SpecificRecordBase implement
      * @param value The builder instance that must be set.
      * @return This builder.
      */
-    public com.bcallanan.domain.generated.store.Builder setAddressBuilder(com.bcallanan.domain.generated.Address.Builder value) {
+    public com.bcallanan.domain.generated.Store.Builder setAddressBuilder(com.bcallanan.domain.generated.Address.Builder value) {
       clearAddress();
       addressBuilder = value;
       return this;
@@ -339,7 +339,7 @@ public class store extends org.apache.avro.specific.SpecificRecordBase implement
       * Clears the value of the 'address' field.
       * @return This builder.
       */
-    public com.bcallanan.domain.generated.store.Builder clearAddress() {
+    public com.bcallanan.domain.generated.Store.Builder clearAddress() {
       address = null;
       addressBuilder = null;
       fieldSetFlags()[1] = false;
@@ -348,9 +348,9 @@ public class store extends org.apache.avro.specific.SpecificRecordBase implement
 
     @Override
     @SuppressWarnings("unchecked")
-    public store build() {
+    public Store build() {
       try {
-        store record = new store();
+        Store record = new Store();
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.Integer) defaultValue(fields()[0]);
         if (addressBuilder != null) {
           try {
@@ -372,8 +372,8 @@ public class store extends org.apache.avro.specific.SpecificRecordBase implement
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<store>
-    WRITER$ = (org.apache.avro.io.DatumWriter<store>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter<Store>
+    WRITER$ = (org.apache.avro.io.DatumWriter<Store>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
@@ -381,8 +381,8 @@ public class store extends org.apache.avro.specific.SpecificRecordBase implement
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<store>
-    READER$ = (org.apache.avro.io.DatumReader<store>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader<Store>
+    READER$ = (org.apache.avro.io.DatumReader<Store>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

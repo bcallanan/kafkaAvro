@@ -1,5 +1,5 @@
 {
-    "name" : "store",
+    "name" : "Store",
     "namespace": "com.bcallanan.domain.generated",
     "type":  "record",
     "fields" : [
