@@ -17,4 +17,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class OrderItemDTO {
 
+    private String name;
+    private SizeEnum size;
+    private Integer quantity;
+    private Float cost; 
+    
 }
