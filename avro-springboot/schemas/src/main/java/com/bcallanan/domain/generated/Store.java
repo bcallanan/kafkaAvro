@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class Store extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 5459353780743130589L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Store\",\"namespace\":\"com.bcallanan.domain.generated\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"address\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"addressLine1\",\"type\":\"string\"},{\"name\":\"addressLine2\",\"type\":\"string\",\"doc\":\"Optional send address line\",\"default\":\"\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"country\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}}]}");
+  private static final long serialVersionUID = 7098374401734087662L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Store\",\"namespace\":\"com.bcallanan.domain.generated\",\"fields\":[{\"name\":\"storeId\",\"type\":\"int\"},{\"name\":\"address\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"addressLine1\",\"type\":\"string\"},{\"name\":\"addressLine2\",\"type\":\"string\",\"doc\":\"Optional send address line\",\"default\":\"\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"country\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -71,7 +71,7 @@ public class Store extends org.apache.avro.specific.SpecificRecordBase implement
     return DECODER.decode(b);
   }
 
-  @Deprecated public int id;
+  @Deprecated public int storeId;
   @Deprecated public com.bcallanan.domain.generated.Address address;
 
   /**
@@ -83,11 +83,11 @@ public class Store extends org.apache.avro.specific.SpecificRecordBase implement
 
   /**
    * All-args constructor.
-   * @param id The new value for id
+   * @param storeId The new value for storeId
    * @param address The new value for address
    */
-  public Store(java.lang.Integer id, com.bcallanan.domain.generated.Address address) {
-    this.id = id;
+  public Store(java.lang.Integer storeId, com.bcallanan.domain.generated.Address address) {
+    this.storeId = storeId;
     this.address = address;
   }
 
@@ -96,7 +96,7 @@ public class Store extends org.apache.avro.specific.SpecificRecordBase implement
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
     switch (field$) {
-    case 0: return id;
+    case 0: return storeId;
     case 1: return address;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
@@ -106,27 +106,27 @@ public class Store extends org.apache.avro.specific.SpecificRecordBase implement
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: id = (java.lang.Integer)value$; break;
+    case 0: storeId = (java.lang.Integer)value$; break;
     case 1: address = (com.bcallanan.domain.generated.Address)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
 
   /**
-   * Gets the value of the 'id' field.
-   * @return The value of the 'id' field.
+   * Gets the value of the 'storeId' field.
+   * @return The value of the 'storeId' field.
    */
-  public int getId() {
-    return id;
+  public int getStoreId() {
+    return storeId;
   }
 
 
   /**
-   * Sets the value of the 'id' field.
+   * Sets the value of the 'storeId' field.
    * @param value the value to set.
    */
-  public void setId(int value) {
-    this.id = value;
+  public void setStoreId(int value) {
+    this.storeId = value;
   }
 
   /**
@@ -187,7 +187,7 @@ public class Store extends org.apache.avro.specific.SpecificRecordBase implement
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<Store>
     implements org.apache.avro.data.RecordBuilder<Store> {
 
-    private int id;
+    private int storeId;
     private com.bcallanan.domain.generated.Address address;
     private com.bcallanan.domain.generated.Address.Builder addressBuilder;
 
@@ -202,8 +202,8 @@ public class Store extends org.apache.avro.specific.SpecificRecordBase implement
      */
     private Builder(com.bcallanan.domain.generated.Store.Builder other) {
       super(other);
-      if (isValidValue(fields()[0], other.id)) {
-        this.id = data().deepCopy(fields()[0].schema(), other.id);
+      if (isValidValue(fields()[0], other.storeId)) {
+        this.storeId = data().deepCopy(fields()[0].schema(), other.storeId);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
       if (isValidValue(fields()[1], other.address)) {
@@ -221,8 +221,8 @@ public class Store extends org.apache.avro.specific.SpecificRecordBase implement
      */
     private Builder(com.bcallanan.domain.generated.Store other) {
       super(SCHEMA$);
-      if (isValidValue(fields()[0], other.id)) {
-        this.id = data().deepCopy(fields()[0].schema(), other.id);
+      if (isValidValue(fields()[0], other.storeId)) {
+        this.storeId = data().deepCopy(fields()[0].schema(), other.storeId);
         fieldSetFlags()[0] = true;
       }
       if (isValidValue(fields()[1], other.address)) {
@@ -233,40 +233,40 @@ public class Store extends org.apache.avro.specific.SpecificRecordBase implement
     }
 
     /**
-      * Gets the value of the 'id' field.
+      * Gets the value of the 'storeId' field.
       * @return The value.
       */
-    public int getId() {
-      return id;
+    public int getStoreId() {
+      return storeId;
     }
 
 
     /**
-      * Sets the value of the 'id' field.
-      * @param value The value of 'id'.
+      * Sets the value of the 'storeId' field.
+      * @param value The value of 'storeId'.
       * @return This builder.
       */
-    public com.bcallanan.domain.generated.Store.Builder setId(int value) {
+    public com.bcallanan.domain.generated.Store.Builder setStoreId(int value) {
       validate(fields()[0], value);
-      this.id = value;
+      this.storeId = value;
       fieldSetFlags()[0] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'id' field has been set.
-      * @return True if the 'id' field has been set, false otherwise.
+      * Checks whether the 'storeId' field has been set.
+      * @return True if the 'storeId' field has been set, false otherwise.
       */
-    public boolean hasId() {
+    public boolean hasStoreId() {
       return fieldSetFlags()[0];
     }
 
 
     /**
-      * Clears the value of the 'id' field.
+      * Clears the value of the 'storeId' field.
       * @return This builder.
       */
-    public com.bcallanan.domain.generated.Store.Builder clearId() {
+    public com.bcallanan.domain.generated.Store.Builder clearStoreId() {
       fieldSetFlags()[0] = false;
       return this;
     }
@@ -351,7 +351,7 @@ public class Store extends org.apache.avro.specific.SpecificRecordBase implement
     public Store build() {
       try {
         Store record = new Store();
-        record.id = fieldSetFlags()[0] ? this.id : (java.lang.Integer) defaultValue(fields()[0]);
+        record.storeId = fieldSetFlags()[0] ? this.storeId : (java.lang.Integer) defaultValue(fields()[0]);
         if (addressBuilder != null) {
           try {
             record.address = this.addressBuilder.build();
@@ -394,7 +394,7 @@ public class Store extends org.apache.avro.specific.SpecificRecordBase implement
   @Override public void customEncode(org.apache.avro.io.Encoder out)
     throws java.io.IOException
   {
-    out.writeInt(this.id);
+    out.writeInt(this.storeId);
 
     this.address.customEncode(out);
 
@@ -405,7 +405,7 @@ public class Store extends org.apache.avro.specific.SpecificRecordBase implement
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
-      this.id = in.readInt();
+      this.storeId = in.readInt();
 
       if (this.address == null) {
         this.address = new com.bcallanan.domain.generated.Address();
@@ -416,7 +416,7 @@ public class Store extends org.apache.avro.specific.SpecificRecordBase implement
       for (int i = 0; i < 2; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.id = in.readInt();
+          this.storeId = in.readInt();
           break;
 
         case 1:

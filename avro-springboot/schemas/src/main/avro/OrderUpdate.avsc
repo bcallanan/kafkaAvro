@@ -3,14 +3,12 @@
     "namespace": "com.bcallanan.domain.generated",
     "type":  "record",
     "fields" : [
-//        {
-//            "name": "id",
-//            "type": "string"
-//        },
        {
             "name": "id",
-            "type": "string",
-            "logicalType": "uuid"
+            "type": {
+               "type": "string",
+               "logicalType": "uuid"
+            }
         },
         {
             "name": "status",

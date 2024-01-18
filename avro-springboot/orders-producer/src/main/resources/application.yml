@@ -1,0 +1,38 @@
+spring:
+  profiles:
+    active: local
+server:
+  # this can be overridden on the command line with
+  # java -jar -Dserver.port=707# target/mybank-0.0.1-SNAPSHOT.jar
+  port: 7079
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+      
+  kafka:
+    # defined here the bootstrap servers are set both for the producer 
+    # and the admin configurations
+    # {$spring.kafka.boostrap-servers}
+    # autowired configurations 
+    bootstrap-servers: broker:9092
+    topic: orders
+    template:
+      default-topic: orders
+    producer:
+      key-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      partitions: 1
+      replicas: 1
+      properties:
+        retries: 10
+        acks: 1
+        schema.registry.url: http://192.168.99.108:38081
+        value:
+          subject:
+            name:
+              strategy: io.confluent.kafka.serializers.subject.RecordNameStrategy
+    admin:
+      autoCreate: true
+ 

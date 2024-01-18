@@ -4,7 +4,7 @@
     "type":  "record",
     "fields" : [
         {
-            "name": "id",
+            "name": "storeId",
             "type": "int"
         },
         {

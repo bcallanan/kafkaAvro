@@ -15,10 +15,13 @@ import org.apache.avro.message.SchemaStore;
 @org.apache.avro.specific.AvroGenerated
 public class OrderUpdate extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = -3441908907868235005L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"OrderUpdate\",\"namespace\":\"com.bcallanan.domain.generated\",\"fields\":[{\"name\":\"id\",\"type\":\"string\",\"logicalType\":\"uuid\"},{\"name\":\"status\",\"type\":{\"type\":\"enum\",\"name\":\"OrderStatus\",\"symbols\":[\"PROCESSING\",\"READY_FOR_PICKUP\"]}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"OrderUpdate\",\"namespace\":\"com.bcallanan.domain.generated\",\"fields\":[{\"name\":\"id\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}},{\"name\":\"status\",\"type\":{\"type\":\"enum\",\"name\":\"OrderStatus\",\"symbols\":[\"PROCESSING\",\"READY_FOR_PICKUP\"]}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
+static {
+    MODEL$.addLogicalTypeConversion(new org.apache.avro.Conversions.UUIDConversion());
+  }
 
   private static final BinaryMessageEncoder<OrderUpdate> ENCODER =
       new BinaryMessageEncoder<OrderUpdate>(MODEL$, SCHEMA$);
@@ -71,7 +74,7 @@ public class OrderUpdate extends org.apache.avro.specific.SpecificRecordBase imp
     return DECODER.decode(b);
   }
 
-  @Deprecated public java.lang.CharSequence id;
+  @Deprecated public java.util.UUID id;
   @Deprecated public com.bcallanan.domain.generated.OrderStatus status;
 
   /**
@@ -86,7 +89,7 @@ public class OrderUpdate extends org.apache.avro.specific.SpecificRecordBase imp
    * @param id The new value for id
    * @param status The new value for status
    */
-  public OrderUpdate(java.lang.CharSequence id, com.bcallanan.domain.generated.OrderStatus status) {
+  public OrderUpdate(java.util.UUID id, com.bcallanan.domain.generated.OrderStatus status) {
     this.id = id;
     this.status = status;
   }
@@ -102,11 +105,23 @@ public class OrderUpdate extends org.apache.avro.specific.SpecificRecordBase imp
     }
   }
 
+  private static final org.apache.avro.Conversion<?>[] conversions =
+      new org.apache.avro.Conversion<?>[] {
+      new org.apache.avro.Conversions.UUIDConversion(),
+      null,
+      null
+  };
+
+  @Override
+  public org.apache.avro.Conversion<?> getConversion(int field) {
+    return conversions[field];
+  }
+
   // Used by DatumReader.  Applications should not call.
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: id = (java.lang.CharSequence)value$; break;
+    case 0: id = (java.util.UUID)value$; break;
     case 1: status = (com.bcallanan.domain.generated.OrderStatus)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
@@ -116,7 +131,7 @@ public class OrderUpdate extends org.apache.avro.specific.SpecificRecordBase imp
    * Gets the value of the 'id' field.
    * @return The value of the 'id' field.
    */
-  public java.lang.CharSequence getId() {
+  public java.util.UUID getId() {
     return id;
   }
 
@@ -125,7 +140,7 @@ public class OrderUpdate extends org.apache.avro.specific.SpecificRecordBase imp
    * Sets the value of the 'id' field.
    * @param value the value to set.
    */
-  public void setId(java.lang.CharSequence value) {
+  public void setId(java.util.UUID value) {
     this.id = value;
   }
 
@@ -187,7 +202,7 @@ public class OrderUpdate extends org.apache.avro.specific.SpecificRecordBase imp
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<OrderUpdate>
     implements org.apache.avro.data.RecordBuilder<OrderUpdate> {
 
-    private java.lang.CharSequence id;
+    private java.util.UUID id;
     private com.bcallanan.domain.generated.OrderStatus status;
 
     /** Creates a new Builder */
@@ -231,7 +246,7 @@ public class OrderUpdate extends org.apache.avro.specific.SpecificRecordBase imp
       * Gets the value of the 'id' field.
       * @return The value.
       */
-    public java.lang.CharSequence getId() {
+    public java.util.UUID getId() {
       return id;
     }
 
@@ -241,7 +256,7 @@ public class OrderUpdate extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'id'.
       * @return This builder.
       */
-    public com.bcallanan.domain.generated.OrderUpdate.Builder setId(java.lang.CharSequence value) {
+    public com.bcallanan.domain.generated.OrderUpdate.Builder setId(java.util.UUID value) {
       validate(fields()[0], value);
       this.id = value;
       fieldSetFlags()[0] = true;
@@ -312,7 +327,7 @@ public class OrderUpdate extends org.apache.avro.specific.SpecificRecordBase imp
     public OrderUpdate build() {
       try {
         OrderUpdate record = new OrderUpdate();
-        record.id = fieldSetFlags()[0] ? this.id : (java.lang.CharSequence) defaultValue(fields()[0]);
+        record.id = fieldSetFlags()[0] ? this.id : (java.util.UUID) defaultValue(fields()[0]);
         record.status = fieldSetFlags()[1] ? this.status : (com.bcallanan.domain.generated.OrderStatus) defaultValue(fields()[1]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
@@ -341,43 +356,6 @@ public class OrderUpdate extends org.apache.avro.specific.SpecificRecordBase imp
     READER$.read(this, SpecificData.getDecoder(in));
   }
 
-  @Override protected boolean hasCustomCoders() { return true; }
-
-  @Override public void customEncode(org.apache.avro.io.Encoder out)
-    throws java.io.IOException
-  {
-    out.writeString(this.id);
-
-    out.writeEnum(this.status.ordinal());
-
-  }
-
-  @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
-    throws java.io.IOException
-  {
-    org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
-    if (fieldOrder == null) {
-      this.id = in.readString(this.id instanceof Utf8 ? (Utf8)this.id : null);
-
-      this.status = com.bcallanan.domain.generated.OrderStatus.values()[in.readEnum()];
-
-    } else {
-      for (int i = 0; i < 2; i++) {
-        switch (fieldOrder[i].pos()) {
-        case 0:
-          this.id = in.readString(this.id instanceof Utf8 ? (Utf8)this.id : null);
-          break;
-
-        case 1:
-          this.status = com.bcallanan.domain.generated.OrderStatus.values()[in.readEnum()];
-          break;
-
-        default:
-          throw new java.io.IOException("Corrupt ResolvingDecoder.");
-        }
-      }
-    }
-  }
 }
 
 

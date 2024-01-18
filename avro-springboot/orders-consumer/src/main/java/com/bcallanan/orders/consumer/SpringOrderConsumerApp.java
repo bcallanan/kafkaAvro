@@ -1,11 +1,11 @@
-package com.bcallanan.orders.producer;
+package com.bcallanan.orders.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProducerApp {
+public class SpringOrderConsumerApp {
     public static void main(String[] args) {
-        SpringApplication.run(ProducerApp.class, args);
+        SpringApplication.run(SpringOrderConsumerApp.class, args);
     }
 }

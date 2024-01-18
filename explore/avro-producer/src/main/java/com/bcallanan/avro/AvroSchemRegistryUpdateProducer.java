@@ -45,7 +45,7 @@ public class AvroSchemRegistryUpdateProducer {
                 "http://192.168.99.108:38081");
         props.put(KafkaAvroSerializerConfig.VALUE_SUBJECT_NAME_STRATEGY,
                 TopicRecordNameStrategy.class.getName());
-        
+         
         KafkaProducer< String, OrderUpdate> kafkaProducer = new KafkaProducer<>( props );
         
         OrderUpdate order = buildOrderUpdateEvent();

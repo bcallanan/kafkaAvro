@@ -1,0 +1,37 @@
+spring:
+  profiles:
+    active: local
+server:
+  # this can be overridden on the command line with
+  # java -jar -Dserver.port=707# target/XXXX-0.0.1-SNAPSHOT.jar
+  port: 7080
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+      
+  kafka:
+    # defined here the bootstrap servers are set both for the producer 
+    # and the admin configurations
+    # {$spring.kafka.boostrap-servers}
+    # autowired configurations 
+    bootstrap-servers: broker:9092
+    topic: orders
+    topics:
+      retry: orders.RETRY
+      deadLetter: orders.DLT
+    template:
+      default-topic: orders
+    consumer:
+      key-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      group-id: orders-group
+      retry-group-id: orders-retry-group
+      dead-letter-group-id: orders-listener-dead-letter-group
+      properties:
+        retries: 10
+        acks: 1
+        specific.avro.reader: true
+        schema.registry.url:
+          http://192.168.99.108:38081 

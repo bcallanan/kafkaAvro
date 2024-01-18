@@ -14,13 +14,13 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class Order extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -6052487658736399445L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Order\",\"namespace\":\"com.bcallanan.domain.generated\",\"fields\":[{\"name\":\"id\",\"type\":\"string\",\"logicalType\":\"uuid\"},{\"name\":\"fullname\",\"type\":\"string\"},{\"name\":\"nickname\",\"type\":\"string\",\"doc\":\"Optional nick name field\",\"default\":\"\"},{\"name\":\"nickname1\",\"type\":\"string\",\"doc\":\"Optional nick name1 field\",\"default\":\"\"},{\"name\":\"store\",\"type\":{\"type\":\"record\",\"name\":\"Store\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"address\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"addressLine1\",\"type\":\"string\"},{\"name\":\"addressLine2\",\"type\":\"string\",\"doc\":\"Optional send address line\",\"default\":\"\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"country\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}}]}},{\"name\":\"OrderItems\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderItem\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"size\",\"type\":{\"type\":\"enum\",\"name\":\"Size\",\"symbols\":[\"SM\",\"MED\",\"LG\",\"XLG\"]}},{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"cost\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":3,\"scale\":2}}]}}},{\"name\":\"pick_up\",\"type\":{\"type\":\"enum\",\"name\":\"PickUp\",\"symbols\":[\"IN_STORE\",\"CURBSIDE\"]},\"default\":\"IN_STORE\"},{\"name\":\"ordered_time\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"ordered_date\",\"type\":{\"type\":\"int\",\"logicalType\":\"date\"}},{\"name\":\"status\",\"type\":{\"type\":\"enum\",\"name\":\"Status\",\"symbols\":[\"NEW\",\"CLOSED\",\"UPDATED\",\"DELETED\",\"COMPLETED\"]},\"default\":\"NEW\"}]}");
+  private static final long serialVersionUID = -226918658396951779L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Order\",\"namespace\":\"com.bcallanan.domain.generated\",\"fields\":[{\"name\":\"id\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}},{\"name\":\"fullname\",\"type\":\"string\"},{\"name\":\"nickName\",\"type\":\"string\",\"doc\":\"Optional nick name field\",\"default\":\"\"},{\"name\":\"nickName1\",\"type\":\"string\",\"doc\":\"Optional nick name1 field\",\"default\":\"\"},{\"name\":\"store\",\"type\":{\"type\":\"record\",\"name\":\"Store\",\"fields\":[{\"name\":\"storeId\",\"type\":\"int\"},{\"name\":\"address\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"addressLine1\",\"type\":\"string\"},{\"name\":\"addressLine2\",\"type\":\"string\",\"doc\":\"Optional send address line\",\"default\":\"\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"country\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}}]}},{\"name\":\"OrderItems\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderItem\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"size\",\"type\":{\"type\":\"enum\",\"name\":\"Size\",\"symbols\":[\"SM\",\"MED\",\"LG\",\"XLG\"]}},{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"cost\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":3,\"scale\":2}}]}}},{\"name\":\"pick_up\",\"type\":{\"type\":\"enum\",\"name\":\"PickUp\",\"symbols\":[\"IN_STORE\",\"CURBSIDE\"]},\"default\":\"IN_STORE\"},{\"name\":\"ordered_time\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"status\",\"type\":{\"type\":\"enum\",\"name\":\"Status\",\"symbols\":[\"NEW\",\"CLOSED\",\"UPDATED\",\"DELETED\",\"COMPLETED\"]},\"default\":\"NEW\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
 static {
-    MODEL$.addLogicalTypeConversion(new org.apache.avro.data.TimeConversions.DateConversion());
+    MODEL$.addLogicalTypeConversion(new org.apache.avro.Conversions.UUIDConversion());
     MODEL$.addLogicalTypeConversion(new org.apache.avro.data.TimeConversions.TimestampMillisConversion());
     MODEL$.addLogicalTypeConversion(new org.apache.avro.Conversions.DecimalConversion());
   }
@@ -76,17 +76,16 @@ static {
     return DECODER.decode(b);
   }
 
-  @Deprecated public java.lang.CharSequence id;
+  @Deprecated public java.util.UUID id;
   @Deprecated public java.lang.CharSequence fullname;
   /** Optional nick name field */
-  @Deprecated public java.lang.CharSequence nickname;
+  @Deprecated public java.lang.CharSequence nickName;
   /** Optional nick name1 field */
-  @Deprecated public java.lang.CharSequence nickname1;
+  @Deprecated public java.lang.CharSequence nickName1;
   @Deprecated public com.bcallanan.domain.generated.Store store;
   @Deprecated public java.util.List<com.bcallanan.domain.generated.OrderItem> OrderItems;
   @Deprecated public com.bcallanan.domain.generated.PickUp pick_up;
   @Deprecated public java.time.Instant ordered_time;
-  @Deprecated public java.time.LocalDate ordered_date;
   @Deprecated public com.bcallanan.domain.generated.Status status;
 
   /**
@@ -100,25 +99,23 @@ static {
    * All-args constructor.
    * @param id The new value for id
    * @param fullname The new value for fullname
-   * @param nickname Optional nick name field
-   * @param nickname1 Optional nick name1 field
+   * @param nickName Optional nick name field
+   * @param nickName1 Optional nick name1 field
    * @param store The new value for store
    * @param OrderItems The new value for OrderItems
    * @param pick_up The new value for pick_up
    * @param ordered_time The new value for ordered_time
-   * @param ordered_date The new value for ordered_date
    * @param status The new value for status
    */
-  public Order(java.lang.CharSequence id, java.lang.CharSequence fullname, java.lang.CharSequence nickname, java.lang.CharSequence nickname1, com.bcallanan.domain.generated.Store store, java.util.List<com.bcallanan.domain.generated.OrderItem> OrderItems, com.bcallanan.domain.generated.PickUp pick_up, java.time.Instant ordered_time, java.time.LocalDate ordered_date, com.bcallanan.domain.generated.Status status) {
+  public Order(java.util.UUID id, java.lang.CharSequence fullname, java.lang.CharSequence nickName, java.lang.CharSequence nickName1, com.bcallanan.domain.generated.Store store, java.util.List<com.bcallanan.domain.generated.OrderItem> OrderItems, com.bcallanan.domain.generated.PickUp pick_up, java.time.Instant ordered_time, com.bcallanan.domain.generated.Status status) {
     this.id = id;
     this.fullname = fullname;
-    this.nickname = nickname;
-    this.nickname1 = nickname1;
+    this.nickName = nickName;
+    this.nickName1 = nickName1;
     this.store = store;
     this.OrderItems = OrderItems;
     this.pick_up = pick_up;
     this.ordered_time = ordered_time.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
-    this.ordered_date = ordered_date;
     this.status = status;
   }
 
@@ -129,21 +126,20 @@ static {
     switch (field$) {
     case 0: return id;
     case 1: return fullname;
-    case 2: return nickname;
-    case 3: return nickname1;
+    case 2: return nickName;
+    case 3: return nickName1;
     case 4: return store;
     case 5: return OrderItems;
     case 6: return pick_up;
     case 7: return ordered_time;
-    case 8: return ordered_date;
-    case 9: return status;
+    case 8: return status;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
 
   private static final org.apache.avro.Conversion<?>[] conversions =
       new org.apache.avro.Conversion<?>[] {
-      null,
+      new org.apache.avro.Conversions.UUIDConversion(),
       null,
       null,
       null,
@@ -151,7 +147,6 @@ static {
       null,
       null,
       new org.apache.avro.data.TimeConversions.TimestampMillisConversion(),
-      new org.apache.avro.data.TimeConversions.DateConversion(),
       null,
       null
   };
@@ -165,16 +160,15 @@ static {
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: id = (java.lang.CharSequence)value$; break;
+    case 0: id = (java.util.UUID)value$; break;
     case 1: fullname = (java.lang.CharSequence)value$; break;
-    case 2: nickname = (java.lang.CharSequence)value$; break;
-    case 3: nickname1 = (java.lang.CharSequence)value$; break;
+    case 2: nickName = (java.lang.CharSequence)value$; break;
+    case 3: nickName1 = (java.lang.CharSequence)value$; break;
     case 4: store = (com.bcallanan.domain.generated.Store)value$; break;
     case 5: OrderItems = (java.util.List<com.bcallanan.domain.generated.OrderItem>)value$; break;
     case 6: pick_up = (com.bcallanan.domain.generated.PickUp)value$; break;
     case 7: ordered_time = (java.time.Instant)value$; break;
-    case 8: ordered_date = (java.time.LocalDate)value$; break;
-    case 9: status = (com.bcallanan.domain.generated.Status)value$; break;
+    case 8: status = (com.bcallanan.domain.generated.Status)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -183,7 +177,7 @@ static {
    * Gets the value of the 'id' field.
    * @return The value of the 'id' field.
    */
-  public java.lang.CharSequence getId() {
+  public java.util.UUID getId() {
     return id;
   }
 
@@ -192,7 +186,7 @@ static {
    * Sets the value of the 'id' field.
    * @param value the value to set.
    */
-  public void setId(java.lang.CharSequence value) {
+  public void setId(java.util.UUID value) {
     this.id = value;
   }
 
@@ -214,39 +208,39 @@ static {
   }
 
   /**
-   * Gets the value of the 'nickname' field.
+   * Gets the value of the 'nickName' field.
    * @return Optional nick name field
    */
-  public java.lang.CharSequence getNickname() {
-    return nickname;
+  public java.lang.CharSequence getNickName() {
+    return nickName;
   }
 
 
   /**
-   * Sets the value of the 'nickname' field.
+   * Sets the value of the 'nickName' field.
    * Optional nick name field
    * @param value the value to set.
    */
-  public void setNickname(java.lang.CharSequence value) {
-    this.nickname = value;
+  public void setNickName(java.lang.CharSequence value) {
+    this.nickName = value;
   }
 
   /**
-   * Gets the value of the 'nickname1' field.
+   * Gets the value of the 'nickName1' field.
    * @return Optional nick name1 field
    */
-  public java.lang.CharSequence getNickname1() {
-    return nickname1;
+  public java.lang.CharSequence getNickName1() {
+    return nickName1;
   }
 
 
   /**
-   * Sets the value of the 'nickname1' field.
+   * Sets the value of the 'nickName1' field.
    * Optional nick name1 field
    * @param value the value to set.
    */
-  public void setNickname1(java.lang.CharSequence value) {
-    this.nickname1 = value;
+  public void setNickName1(java.lang.CharSequence value) {
+    this.nickName1 = value;
   }
 
   /**
@@ -318,23 +312,6 @@ static {
   }
 
   /**
-   * Gets the value of the 'ordered_date' field.
-   * @return The value of the 'ordered_date' field.
-   */
-  public java.time.LocalDate getOrderedDate() {
-    return ordered_date;
-  }
-
-
-  /**
-   * Sets the value of the 'ordered_date' field.
-   * @param value the value to set.
-   */
-  public void setOrderedDate(java.time.LocalDate value) {
-    this.ordered_date = value;
-  }
-
-  /**
    * Gets the value of the 'status' field.
    * @return The value of the 'status' field.
    */
@@ -392,18 +369,17 @@ static {
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<Order>
     implements org.apache.avro.data.RecordBuilder<Order> {
 
-    private java.lang.CharSequence id;
+    private java.util.UUID id;
     private java.lang.CharSequence fullname;
     /** Optional nick name field */
-    private java.lang.CharSequence nickname;
+    private java.lang.CharSequence nickName;
     /** Optional nick name1 field */
-    private java.lang.CharSequence nickname1;
+    private java.lang.CharSequence nickName1;
     private com.bcallanan.domain.generated.Store store;
     private com.bcallanan.domain.generated.Store.Builder storeBuilder;
     private java.util.List<com.bcallanan.domain.generated.OrderItem> OrderItems;
     private com.bcallanan.domain.generated.PickUp pick_up;
     private java.time.Instant ordered_time;
-    private java.time.LocalDate ordered_date;
     private com.bcallanan.domain.generated.Status status;
 
     /** Creates a new Builder */
@@ -425,12 +401,12 @@ static {
         this.fullname = data().deepCopy(fields()[1].schema(), other.fullname);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
-      if (isValidValue(fields()[2], other.nickname)) {
-        this.nickname = data().deepCopy(fields()[2].schema(), other.nickname);
+      if (isValidValue(fields()[2], other.nickName)) {
+        this.nickName = data().deepCopy(fields()[2].schema(), other.nickName);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
-      if (isValidValue(fields()[3], other.nickname1)) {
-        this.nickname1 = data().deepCopy(fields()[3].schema(), other.nickname1);
+      if (isValidValue(fields()[3], other.nickName1)) {
+        this.nickName1 = data().deepCopy(fields()[3].schema(), other.nickName1);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
       }
       if (isValidValue(fields()[4], other.store)) {
@@ -452,13 +428,9 @@ static {
         this.ordered_time = data().deepCopy(fields()[7].schema(), other.ordered_time);
         fieldSetFlags()[7] = other.fieldSetFlags()[7];
       }
-      if (isValidValue(fields()[8], other.ordered_date)) {
-        this.ordered_date = data().deepCopy(fields()[8].schema(), other.ordered_date);
+      if (isValidValue(fields()[8], other.status)) {
+        this.status = data().deepCopy(fields()[8].schema(), other.status);
         fieldSetFlags()[8] = other.fieldSetFlags()[8];
-      }
-      if (isValidValue(fields()[9], other.status)) {
-        this.status = data().deepCopy(fields()[9].schema(), other.status);
-        fieldSetFlags()[9] = other.fieldSetFlags()[9];
       }
     }
 
@@ -476,12 +448,12 @@ static {
         this.fullname = data().deepCopy(fields()[1].schema(), other.fullname);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.nickname)) {
-        this.nickname = data().deepCopy(fields()[2].schema(), other.nickname);
+      if (isValidValue(fields()[2], other.nickName)) {
+        this.nickName = data().deepCopy(fields()[2].schema(), other.nickName);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.nickname1)) {
-        this.nickname1 = data().deepCopy(fields()[3].schema(), other.nickname1);
+      if (isValidValue(fields()[3], other.nickName1)) {
+        this.nickName1 = data().deepCopy(fields()[3].schema(), other.nickName1);
         fieldSetFlags()[3] = true;
       }
       if (isValidValue(fields()[4], other.store)) {
@@ -501,13 +473,9 @@ static {
         this.ordered_time = data().deepCopy(fields()[7].schema(), other.ordered_time);
         fieldSetFlags()[7] = true;
       }
-      if (isValidValue(fields()[8], other.ordered_date)) {
-        this.ordered_date = data().deepCopy(fields()[8].schema(), other.ordered_date);
+      if (isValidValue(fields()[8], other.status)) {
+        this.status = data().deepCopy(fields()[8].schema(), other.status);
         fieldSetFlags()[8] = true;
-      }
-      if (isValidValue(fields()[9], other.status)) {
-        this.status = data().deepCopy(fields()[9].schema(), other.status);
-        fieldSetFlags()[9] = true;
       }
     }
 
@@ -515,7 +483,7 @@ static {
       * Gets the value of the 'id' field.
       * @return The value.
       */
-    public java.lang.CharSequence getId() {
+    public java.util.UUID getId() {
       return id;
     }
 
@@ -525,7 +493,7 @@ static {
       * @param value The value of 'id'.
       * @return This builder.
       */
-    public com.bcallanan.domain.generated.Order.Builder setId(java.lang.CharSequence value) {
+    public com.bcallanan.domain.generated.Order.Builder setId(java.util.UUID value) {
       validate(fields()[0], value);
       this.id = value;
       fieldSetFlags()[0] = true;
@@ -592,89 +560,89 @@ static {
     }
 
     /**
-      * Gets the value of the 'nickname' field.
+      * Gets the value of the 'nickName' field.
       * Optional nick name field
       * @return The value.
       */
-    public java.lang.CharSequence getNickname() {
-      return nickname;
+    public java.lang.CharSequence getNickName() {
+      return nickName;
     }
 
 
     /**
-      * Sets the value of the 'nickname' field.
+      * Sets the value of the 'nickName' field.
       * Optional nick name field
-      * @param value The value of 'nickname'.
+      * @param value The value of 'nickName'.
       * @return This builder.
       */
-    public com.bcallanan.domain.generated.Order.Builder setNickname(java.lang.CharSequence value) {
+    public com.bcallanan.domain.generated.Order.Builder setNickName(java.lang.CharSequence value) {
       validate(fields()[2], value);
-      this.nickname = value;
+      this.nickName = value;
       fieldSetFlags()[2] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'nickname' field has been set.
+      * Checks whether the 'nickName' field has been set.
       * Optional nick name field
-      * @return True if the 'nickname' field has been set, false otherwise.
+      * @return True if the 'nickName' field has been set, false otherwise.
       */
-    public boolean hasNickname() {
+    public boolean hasNickName() {
       return fieldSetFlags()[2];
     }
 
 
     /**
-      * Clears the value of the 'nickname' field.
+      * Clears the value of the 'nickName' field.
       * Optional nick name field
       * @return This builder.
       */
-    public com.bcallanan.domain.generated.Order.Builder clearNickname() {
-      nickname = null;
+    public com.bcallanan.domain.generated.Order.Builder clearNickName() {
+      nickName = null;
       fieldSetFlags()[2] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'nickname1' field.
+      * Gets the value of the 'nickName1' field.
       * Optional nick name1 field
       * @return The value.
       */
-    public java.lang.CharSequence getNickname1() {
-      return nickname1;
+    public java.lang.CharSequence getNickName1() {
+      return nickName1;
     }
 
 
     /**
-      * Sets the value of the 'nickname1' field.
+      * Sets the value of the 'nickName1' field.
       * Optional nick name1 field
-      * @param value The value of 'nickname1'.
+      * @param value The value of 'nickName1'.
       * @return This builder.
       */
-    public com.bcallanan.domain.generated.Order.Builder setNickname1(java.lang.CharSequence value) {
+    public com.bcallanan.domain.generated.Order.Builder setNickName1(java.lang.CharSequence value) {
       validate(fields()[3], value);
-      this.nickname1 = value;
+      this.nickName1 = value;
       fieldSetFlags()[3] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'nickname1' field has been set.
+      * Checks whether the 'nickName1' field has been set.
       * Optional nick name1 field
-      * @return True if the 'nickname1' field has been set, false otherwise.
+      * @return True if the 'nickName1' field has been set, false otherwise.
       */
-    public boolean hasNickname1() {
+    public boolean hasNickName1() {
       return fieldSetFlags()[3];
     }
 
 
     /**
-      * Clears the value of the 'nickname1' field.
+      * Clears the value of the 'nickName1' field.
       * Optional nick name1 field
       * @return This builder.
       */
-    public com.bcallanan.domain.generated.Order.Builder clearNickname1() {
-      nickname1 = null;
+    public com.bcallanan.domain.generated.Order.Builder clearNickName1() {
+      nickName1 = null;
       fieldSetFlags()[3] = false;
       return this;
     }
@@ -874,45 +842,6 @@ static {
     }
 
     /**
-      * Gets the value of the 'ordered_date' field.
-      * @return The value.
-      */
-    public java.time.LocalDate getOrderedDate() {
-      return ordered_date;
-    }
-
-
-    /**
-      * Sets the value of the 'ordered_date' field.
-      * @param value The value of 'ordered_date'.
-      * @return This builder.
-      */
-    public com.bcallanan.domain.generated.Order.Builder setOrderedDate(java.time.LocalDate value) {
-      validate(fields()[8], value);
-      this.ordered_date = value;
-      fieldSetFlags()[8] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'ordered_date' field has been set.
-      * @return True if the 'ordered_date' field has been set, false otherwise.
-      */
-    public boolean hasOrderedDate() {
-      return fieldSetFlags()[8];
-    }
-
-
-    /**
-      * Clears the value of the 'ordered_date' field.
-      * @return This builder.
-      */
-    public com.bcallanan.domain.generated.Order.Builder clearOrderedDate() {
-      fieldSetFlags()[8] = false;
-      return this;
-    }
-
-    /**
       * Gets the value of the 'status' field.
       * @return The value.
       */
@@ -927,9 +856,9 @@ static {
       * @return This builder.
       */
     public com.bcallanan.domain.generated.Order.Builder setStatus(com.bcallanan.domain.generated.Status value) {
-      validate(fields()[9], value);
+      validate(fields()[8], value);
       this.status = value;
-      fieldSetFlags()[9] = true;
+      fieldSetFlags()[8] = true;
       return this;
     }
 
@@ -938,7 +867,7 @@ static {
       * @return True if the 'status' field has been set, false otherwise.
       */
     public boolean hasStatus() {
-      return fieldSetFlags()[9];
+      return fieldSetFlags()[8];
     }
 
 
@@ -948,7 +877,7 @@ static {
       */
     public com.bcallanan.domain.generated.Order.Builder clearStatus() {
       status = null;
-      fieldSetFlags()[9] = false;
+      fieldSetFlags()[8] = false;
       return this;
     }
 
@@ -957,10 +886,10 @@ static {
     public Order build() {
       try {
         Order record = new Order();
-        record.id = fieldSetFlags()[0] ? this.id : (java.lang.CharSequence) defaultValue(fields()[0]);
+        record.id = fieldSetFlags()[0] ? this.id : (java.util.UUID) defaultValue(fields()[0]);
         record.fullname = fieldSetFlags()[1] ? this.fullname : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.nickname = fieldSetFlags()[2] ? this.nickname : (java.lang.CharSequence) defaultValue(fields()[2]);
-        record.nickname1 = fieldSetFlags()[3] ? this.nickname1 : (java.lang.CharSequence) defaultValue(fields()[3]);
+        record.nickName = fieldSetFlags()[2] ? this.nickName : (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.nickName1 = fieldSetFlags()[3] ? this.nickName1 : (java.lang.CharSequence) defaultValue(fields()[3]);
         if (storeBuilder != null) {
           try {
             record.store = this.storeBuilder.build();
@@ -974,8 +903,7 @@ static {
         record.OrderItems = fieldSetFlags()[5] ? this.OrderItems : (java.util.List<com.bcallanan.domain.generated.OrderItem>) defaultValue(fields()[5]);
         record.pick_up = fieldSetFlags()[6] ? this.pick_up : (com.bcallanan.domain.generated.PickUp) defaultValue(fields()[6]);
         record.ordered_time = fieldSetFlags()[7] ? this.ordered_time : (java.time.Instant) defaultValue(fields()[7]);
-        record.ordered_date = fieldSetFlags()[8] ? this.ordered_date : (java.time.LocalDate) defaultValue(fields()[8]);
-        record.status = fieldSetFlags()[9] ? this.status : (com.bcallanan.domain.generated.Status) defaultValue(fields()[9]);
+        record.status = fieldSetFlags()[8] ? this.status : (com.bcallanan.domain.generated.Status) defaultValue(fields()[8]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;

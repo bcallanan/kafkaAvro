@@ -8,8 +8,10 @@
 //            "type": "OrderId"        },
        {
             "name": "id",
-            "type": "string",
-            "logicalType": "uuid"
+            "type": {
+              "type": "string",
+              "logicalType": "uuid"
+            }
         },
 //        {
 //            "name": "name",
@@ -20,13 +22,13 @@
             "type": "string"
         },
         {
-            "name": "nickname",
+            "name": "nickName",
             "type": "string",
             "default":"",
             "doc": "Optional nick name field"
         },
         {
-            "name": "nickname1",
+            "name": "nickName1",
             "type": "string",
             "default":"",
             "doc": "Optional nick name1 field"
@@ -64,13 +66,13 @@
                 "logicalType": "timestamp-millis"
             }
         },
-        {
-            "name": "ordered_date",
-            "type": {
-                "type": "int",
-                "logicalType": "date"
-            }
-        },
+//        {
+//            "name": "ordered_date",
+//            "type": {
+//                "type": "int",
+//                "logicalType": "date"
+//            }            
+//        },
         {
             "name": "status",
             "type": {
